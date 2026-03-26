@@ -1,0 +1,3445 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)file:///C:/Users/valen/Downloads/index_26.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vauché — Feuille de route IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com/"><link href="./Vauché — Feuille de route IA_ok_files/css2" rel="stylesheet">
+<script src="./Vauché — Feuille de route IA_ok_files/jspdf.umd.min.js.téléchargement"></script>
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #1A1A1A;
+    --charcoal: #2D2D2D;
+    --gold: #C8A96E;
+    --gold-light: #E8D5A8;
+    --rust: #B85C38;
+    --sage: #5C7A6B;
+    --blue-deep: #1E3A5F;
+    --border: #D4C9B0;
+    --white: #FFFFFF;
+    --shadow: 0 4px 24px rgba(26,26,26,0.08);
+    --shadow-lg: 0 8px 48px rgba(26,26,26,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:100;
+    background: rgba(245,240,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 0.5px;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-tabs { display: flex; gap: 4px; }
+  .nav-tab {
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--charcoal);
+    transition: all 0.2s;
+  }
+  .nav-tab:hover { background: var(--gold-light); }
+  .nav-tab.active {
+    background: var(--dark);
+    color: var(--cream);
+  }
+  .nav-actions { display: flex; gap: 10px; }
+  .btn-pdf {
+    padding: 9px 22px;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-pdf:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: var(--shadow); }
+
+  /* ─── SECTIONS ─── */
+  section { display: none; padding-top: 64px; min-height: 100vh; }
+  section.active { display: block; }
+
+  /* ─── HERO / INTRO ─── */
+  #intro {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,169,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(92,122,107,0.08) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(245,240,232,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(245,240,232,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 120px 48px 80px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.3);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-subtitle {
+    font-size: 17px;
+    color: rgba(245,240,232,0.6);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 56px;
+  }
+  .hero-stats {
+    display: flex; gap: 40px;
+    border-top: 1px solid rgba(245,240,232,0.1);
+    padding-top: 40px;
+  }
+  .hero-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(245,240,232,0.4);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  .hero-context {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .context-card {
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(245,240,232,0.1);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .context-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .context-card p {
+    font-size: 14px;
+    color: rgba(245,240,232,0.55);
+    line-height: 1.7;
+  }
+
+  /* ─── PROJECTS LIST ─── */
+  #projects {
+    background: var(--cream);
+  }
+  .section-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 60px 48px;
+  }
+  .section-header {
+    margin-bottom: 40px;
+  }
+  .section-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .section-desc {
+    font-size: 15px;
+    color: #666;
+    margin-top: 8px;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label { font-size: 12px; color: #888; font-weight: 500; margin-right: 4px; }
+  .filter-btn {
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--charcoal);
+  }
+  .filter-btn:hover { border-color: var(--gold); color: var(--dark); }
+  .filter-btn.active { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+
+  /* Projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .project-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
+  }
+  .card-accent {
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .card-accent.sage { background: linear-gradient(90deg, var(--sage), #8aad9c); }
+  .card-accent.rust { background: linear-gradient(90deg, var(--rust), #d4815e); }
+  .card-accent.blue { background: linear-gradient(90deg, var(--blue-deep), #3a6ca8); }
+  .card-body { padding: 24px; }
+  .card-dept {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .card-dept.sage { color: var(--sage); }
+  .card-dept.rust { color: var(--rust); }
+  .card-dept.blue { color: var(--blue-deep); }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .card-meta {
+    display: flex; gap: 12px; margin-bottom: 16px;
+  }
+  .card-meta-item {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .meta-label { font-size: 10px; color: #aaa; font-weight: 500; letter-spacing: 0.5px; }
+  .meta-value { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .meta-input {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 8px;
+    width: 68px;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+  .meta-input:focus { outline: none; border-color: var(--gold); }
+  .card-scores {
+    display: flex; gap: 8px;
+  }
+  .score-badge {
+    flex: 1;
+    text-align: center;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .score-badge:hover { border-color: var(--gold); }
+  .score-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #aaa; margin-bottom: 4px; }
+  .score-stars { display: flex; justify-content: center; gap: 2px; }
+  .star {
+    width: 12px; height: 12px; cursor: pointer;
+    color: #ddd; transition: color 0.15s;
+    font-size: 12px;
+  }
+  .star.filled { color: var(--gold); }
+  .star.filled.sage { color: var(--sage); }
+
+  /* ─── MATRIX ─── */
+  #matrix { background: #F8F5EF; }
+  .matrix-container {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .matrix-legend {
+    display: flex; gap: 24px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #777; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  .matrix-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 60%;
+    min-height: 480px;
+  }
+  .matrix-canvas {
+    position: absolute; inset: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fefcf6 0%, #f8f5ef 100%);
+  }
+  .matrix-axis-y {
+    position: absolute; left: -40px; top: 0; bottom: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    color: #aaa; writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+  .matrix-axis-x {
+    position: absolute; bottom: -28px; left: 0; right: 0;
+    text-align: center;
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    color: #aaa;
+  }
+  .quadrant-label {
+    position: absolute; font-size: 11px; font-weight: 600; opacity: 0.4;
+    letter-spacing: 0.5px;
+  }
+  /* Quadrant backgrounds */
+  .quad-tl { position: absolute; left:0; top:0; width:50%; height:50%; background: rgba(92,122,107,0.04); border-right: 1px dashed rgba(0,0,0,0.06); border-bottom: 1px dashed rgba(0,0,0,0.06); }
+  .quad-tr { position: absolute; right:0; top:0; width:50%; height:50%; background: rgba(200,169,110,0.06); border-bottom: 1px dashed rgba(0,0,0,0.06); border-left: 1px dashed rgba(0,0,0,0.06); }
+  .quad-bl { position: absolute; left:0; bottom:0; width:50%; height:50%; background: rgba(26,26,26,0.02); border-right: 1px dashed rgba(0,0,0,0.06); border-top: 1px dashed rgba(0,0,0,0.06); }
+  .quad-br { position: absolute; right:0; bottom:0; width:50%; height:50%; background: rgba(184,92,56,0.04); border-left: 1px dashed rgba(0,0,0,0.06); border-top: 1px dashed rgba(0,0,0,0.06); }
+
+  .dot-wrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    user-select: none;
+    transition: filter 0.2s;
+    z-index: 10;
+  }
+  .dot-wrapper:hover { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2)); z-index: 20; }
+  .dot-wrapper.dragging { cursor: grabbing; z-index: 30; transition: none; }
+  .dot-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white;
+    border: 2px solid rgba(255,255,255,0.5);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    transition: transform 0.15s;
+  }
+  .dot-wrapper:hover .dot-circle { transform: scale(1.15); }
+  .dot-label {
+    position: absolute; top: 48px; left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 10px; font-weight: 600;
+    background: rgba(26,26,26,0.85);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dot-wrapper:hover .dot-label { opacity: 1; }
+
+  /* ─── DETAIL MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,26,26,0.6);
+    backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 16px;
+    width: 580px;
+    max-width: 95vw;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: modalIn 0.25s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform: scale(0.96) translateY(10px); } to { opacity:1; transform: scale(1); } }
+  .modal-header {
+    padding: 28px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: white;
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .modal-dept {
+    font-size: 10px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: var(--dark);
+  }
+  .modal-close {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: #aaa; transition: all 0.2s;
+  }
+  .modal-close:hover { background: var(--cream); color: var(--dark); }
+  .modal-body { padding: 28px; }
+  .modal-section { margin-bottom: 24px; }
+  .modal-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #aaa; margin-bottom: 10px;
+  }
+  .modal-section p, .modal-section li {
+    font-size: 14px; color: #555; line-height: 1.7;
+  }
+  .modal-section ul { padding-left: 16px; }
+  .modal-row { display: flex; gap: 16px; margin-bottom: 20px; }
+  .modal-field { flex: 1; }
+  .modal-field label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; color: #aaa; margin-bottom: 6px; }
+  .modal-field input {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--cream);
+    color: var(--dark);
+    transition: border-color 0.2s;
+  }
+  .modal-field input:focus { outline: none; border-color: var(--gold); }
+  .slider-group { display: flex; flex-direction: column; gap: 16px; }
+  .slider-item label {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; font-weight: 600; color: #555; margin-bottom: 6px;
+  }
+  .slider-item label span { color: var(--gold); font-size: 14px; }
+  input[type="range"] {
+    width: 100%; height: 4px;
+    -webkit-appearance: none;
+    background: var(--border);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .modal-save {
+    width: 100%;
+    padding: 13px;
+    background: var(--dark);
+    color: var(--cream);
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+  }
+  .modal-save:hover { background: var(--charcoal); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--dark);
+    color: var(--cream);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 999;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .hero-content { padding: 80px 20px 48px; }
+    .hero-context { padding: 32px 20px; grid-template-columns: 1fr; }
+    .section-inner { padding: 40px 20px; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .matrix-wrapper { padding-bottom: 90%; }
+    .nav-tabs { display: none; }
+  }
+
+  /* ─── AI TOOLS ─── */
+  .tools-grid {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .tool-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 12px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+  .tool-item:hover { border-color: var(--gold); }
+  .tool-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background: rgba(200,169,110,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(200,169,110,0.3);
+    white-space: nowrap;
+    margin-top: 1px;
+  }
+  .tool-badge.custom {
+    background: rgba(92,122,107,0.12);
+    color: var(--sage);
+    border-color: rgba(92,122,107,0.3);
+  }
+  .tool-content { flex: 1; min-width: 0; }
+  .tool-name {
+    font-size: 13px; font-weight: 600; color: var(--dark);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .tool-link {
+    font-size: 10px; color: var(--gold); text-decoration: none;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  .tool-link:hover { opacity: 1; }
+  .tool-note { font-size: 12px; color: #888; line-height: 1.5; margin-top: 2px; }
+
+  /* Card tools preview */
+  .card-tools {
+    display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .card-tool-pill {
+    font-size: 10px; font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: rgba(200,169,110,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(200,169,110,0.25);
+    letter-spacing: 0.3px;
+  }
+  .card-tool-more {
+    font-size: 10px; color: #aaa; padding: 3px 6px; align-self: center;
+  }
+
+  /* ─── PRINT UTILITY ─── */
+  .no-print { }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Vauché <span>×</span> IA</div>
+  <div class="nav-tabs">
+    <button class="nav-tab" onclick="showSection(&#39;intro&#39;)">Présentation</button>
+    <button class="nav-tab active" onclick="showSection(&#39;projects&#39;)">Use Cases</button>
+    <button class="nav-tab" onclick="showSection(&#39;matrix&#39;)">Matrice ROI</button>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-pdf" onclick="exportPDF()">↓ Exporter PDF</button>
+  </div>
+</nav>
+
+<!-- SECTION: INTRO -->
+<section id="intro" class="">
+  <div style="background: var(--dark);">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Diagnostic IA — Esteka Data × Vauché</div>
+      <h1 class="hero-title">Feuille de route<br><em>Intelligence Artificielle</em></h1>
+      <p class="hero-subtitle">Identification et priorisation des use cases d'automatisation par l'IA pour les équipes Vauché — un potentiel de transformation significatif sur l'ensemble de la chaîne de valeur.</p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-value">21</div>
+          <div class="hero-stat-label">Use cases identifiés</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">5</div>
+          <div class="hero-stat-label">Départements concernés</div>
+        </div>
+        <div>
+          <div class="hero-stat-value">6ème</div>
+          <div class="hero-stat-label">Génération, 40 ans d'expertise</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-context">
+      <div class="context-card">
+        <h3>Contexte métier</h3>
+        <p>Concepteur d'usines de traitement et tri des déchets depuis 40 ans. Installations clé en main, supervision informatisée. Bureau projet, bureau réalisation, SAV et atelier.</p>
+      </div>
+      <div class="context-card">
+        <h3>Enjeux identifiés</h3>
+        <p>Soulager la charge opérationnelle sur les devis (200h–2500h/projet), automatiser les processus répétitifs en comptabilité, achats et bureau d'études.</p>
+      </div>
+      <div class="context-card">
+        <h3>Ambition IA</h3>
+        <p>50% de la production de devis, projets et appels d'offres potentiellement automatisable. Gain attendu significatif sur la marge et la capacité de traitement.</p>
+      </div>
+      <div class="context-card">
+        <h3>Méthode</h3>
+        <p>Chaque use case est évalué selon son ROI potentiel, sa faisabilité technique, son coût estimé (POC + déploiement) et son impact métier.</p>
+      </div>
+    </div>
+  </div>
+  <!-- MATURITY SECTION -->
+  <div style="background: var(--cream);">
+    <div style="max-width:960px; margin:0 auto; padding: 60px 48px 0;">
+      <div class="section-tag" style="color:var(--gold);">Analyse de maturité IA</div>
+      <h2 style="font-family:&#39;Playfair Display&#39;,serif; font-size:32px; font-weight:700; color:var(--dark); margin-bottom:8px;">Où en est Vauché ?</h2>
+      <p style="font-size:15px; color:#666; max-width:600px; line-height:1.65; margin-bottom:40px;">Un regard honnête sur les forces, les freins et les idées reçues qui conditionnent le démarrage des projets IA.</p>
+
+      <!-- Maturity gauge -->
+      <div style="background:white; border:1px solid var(--border); border-radius:16px; padding:32px; margin-bottom:32px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#aaa; margin-bottom:4px;">Niveau de maturité estimé</div>
+            <div style="font-family:&#39;Playfair Display&#39;,serif; font-size:24px; font-weight:700; color:var(--dark);">Intermédiaire <span style="color:var(--gold);">— Industrialisable</span></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:180px; height:10px; background:var(--border); border-radius:100px; overflow:hidden;">
+              <div style="width:58%; height:100%; background:linear-gradient(90deg,var(--sage),var(--gold)); border-radius:100px;"></div>
+            </div>
+            <span style="font-size:14px; font-weight:700; color:var(--gold);">58%</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px;">
+          <div style="padding:16px; background:rgba(92,122,107,0.06); border:1px solid rgba(92,122,107,0.15); border-radius:10px;">
+            <div style="font-size:18px; margin-bottom:6px;">✅</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--sage); margin-bottom:8px;">Atouts</div>
+            <ul style="font-size:13px; color:#555; line-height:1.7; list-style:none; padding:0;">
+              <li>→ Données historiques riches (devis, projets, SAV)</li>
+              <li>→ ERP Everwin en place, données structurées</li>
+              <li>→ Équipes expertes avec processus documentés</li>
+              <li>→ Direction impliquée et volonté d'innover</li>
+              <li>→ Répétitivité élevée = fort potentiel d'automatisation</li>
+            </ul>
+          </div>
+          <div style="padding:16px; background:rgba(184,92,56,0.05); border:1px solid rgba(184,92,56,0.15); border-radius:10px;">
+            <div style="font-size:18px; margin-bottom:6px;">⚠️</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--rust); margin-bottom:8px;">Freins identifiés</div>
+            <ul style="font-size:13px; color:#555; line-height:1.7; list-style:none; padding:0;">
+              <li>→ Données dispersées (ERP + LSE + Excel + BDD locales)</li>
+              <li>→ Pas de connexion entre les systèmes aujourd'hui</li>
+              <li>→ Culture "papier" encore présente (piles de factures)</li>
+              <li>→ Crainte de perdre le contrôle sur les décisions métier</li>
+              <li>→ Pas de référent data / IA en interne</li>
+            </ul>
+          </div>
+          <div style="padding:16px; background:rgba(200,169,110,0.08); border:1px solid rgba(200,169,110,0.2); border-radius:10px;">
+            <div style="font-size:18px; margin-bottom:6px;">💡</div>
+            <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Déjà automatisé</div>
+            <ul style="font-size:13px; color:#555; line-height:1.7; list-style:none; padding:0;">
+              <li>→ Supervision informatisée des installations</li>
+              <li>→ ERP Everwin pour la gestion projet</li>
+              <li>→ Facturation électronique via Korus (collectivités)</li>
+              <li>→ Modèles paramétriques dans SolidWorks</li>
+              <li>→ Suivi Excel structuré pour les achats</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Idées reçues -->
+      <div style="margin-bottom:40px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#aaa; margin-bottom:20px;">Les idées reçues à déconstruire</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+          <div style="background:white; border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:rgba(184,92,56,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px;">🚧</div>
+            <div>
+              <div style="font-size:12px; font-weight:700; color:var(--rust); margin-bottom:4px; letter-spacing:0.3px;">"Un projet IA, ça prend une journée"</div>
+              <div style="font-size:12px; color:#777; line-height:1.6;">En réalité, un POC bien fait demande <strong>8 à 25 jours</strong> — et le déploiement production 2 à 4 fois plus. La vitesse dépend de la qualité des données disponibles et de l'intégration ERP. Vouloir aller trop vite = résultats décevants et abandon.</div>
+            </div>
+          </div>
+          <div style="background:white; border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:rgba(184,92,56,0.1); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px;">🤖</div>
+            <div>
+              <div style="font-size:12px; font-weight:700; color:var(--rust); margin-bottom:4px; letter-spacing:0.3px;">"L'IA peut tout faire toute seule"</div>
+              <div style="font-size:12px; color:#777; line-height:1.6;">L'IA excelle sur les tâches <strong>répétitives et bien délimitées</strong>. Pour les cas complexes (devis sur mesure très atypiques, décisions contractuelles), elle assiste — elle ne décide pas seule. L'humain reste au centre pour les exceptions.</div>
+            </div>
+          </div>
+          <div style="background:white; border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:rgba(200,169,110,0.15); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px;">📊</div>
+            <div>
+              <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:4px; letter-spacing:0.3px;">"Nos données ne sont pas assez propres"</div>
+              <div style="font-size:12px; color:#777; line-height:1.6;">C'est un frein réel, mais <strong>pas bloquant pour commencer</strong>. Les premiers projets permettent justement d'identifier les vrais problèmes de qualité data. On ne nettoie pas tout avant — on nettoie ce dont le projet a besoin.</div>
+            </div>
+          </div>
+          <div style="background:white; border:1px solid var(--border); border-radius:12px; padding:20px; display:flex; gap:14px; align-items:flex-start;">
+            <div style="flex-shrink:0; width:36px; height:36px; background:rgba(200,169,110,0.15); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px;">🔒</div>
+            <div>
+              <div style="font-size:12px; font-weight:700; color:var(--gold); margin-bottom:4px; letter-spacing:0.3px;">"L'IA va remplacer nos équipes"</div>
+              <div style="font-size:12px; color:#777; line-height:1.6;">Dans un contexte industriel B2B comme Vauché, l'IA <strong>libère du temps sur les tâches sans valeur ajoutée</strong> (saisie, recherche, mise en forme) pour que les équipes se concentrent sur l'expertise technique et la relation client.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 JOURS QUICK START -->
+    <div style="background:#1A1A1A; padding:60px 48px;">
+      <div style="max-width:960px; margin:0 auto;">
+        <div style="margin-bottom:32px;">
+          <div style="display:inline-block;background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.3);color:#C8A96E;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:16px;">SPRINT DE DEMARRAGE</div>
+          <h2 style="font-family:&#39;Playfair Display&#39;,serif;font-size:28px;font-weight:700;color:#F5F0E8;margin-bottom:8px;">3 projets a lancer dans les <span style="color:#C8A96E;">9 jours restants</span></h2>
+          <p style="font-size:13px;color:rgba(245,240,232,0.5);">Cliquez sur <strong style="color:rgba(245,240,232,0.8);">Changer</strong> pour modifier un slot.</p>
+        </div>
+        <div id="sprintCards" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;"><div style="background:rgba(245,240,232,0.04);border:1px solid rgba(200,169,110,0.35);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;"><div style="height:4px;background:linear-gradient(90deg,#C8A96E,#E8D5A8);"></div><div style="padding:20px;flex:1;display:flex;flex-direction:column;"><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C8A96E;margin-bottom:6px;">Semaine 1 - Jour 1-&gt;3</div><div style="font-size:15px;font-weight:600;color:#F5F0E8;margin-bottom:6px;line-height:1.3;">Récupération commandes mal...</div><div style="font-size:10px;font-weight:600;color:rgba(245,240,232,0.35);margin-bottom:10px;text-transform:uppercase;">Achats</div><p style="font-size:11px;color:rgba(245,240,232,0.45);line-height:1.6;margin-bottom:14px;flex:1;">Identification automatique des commandes/achats incomplets ou incorrectement renseignés, avec workflow de correction....</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;"><span style="font-size:10px;padding:3px 9px;border-radius:100px;background:rgba(92,122,107,0.15);color:#8aad9c;border:1px solid rgba(92,122,107,0.25);">3 j POC</span></div><button style="width:100%;padding:9px;background:transparent;border:1px solid rgba(200,169,110,0.35);border-radius:8px;color:#C8A96E;font-size:12px;font-weight:600;cursor:pointer;">&lt;-&gt; Changer ce projet</button></div></div><div style="background:rgba(245,240,232,0.04);border:1px solid rgba(92,122,107,0.35);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;"><div style="height:4px;background:linear-gradient(90deg,#5C7A6B,#8aad9c);"></div><div style="padding:20px;flex:1;display:flex;flex-direction:column;"><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8aad9c;margin-bottom:6px;">Semaine 1 - Jour 4-&gt;6</div><div style="font-size:15px;font-weight:600;color:#F5F0E8;margin-bottom:6px;line-height:1.3;">Score Go / No-Go sur les a...</div><div style="font-size:10px;font-weight:600;color:rgba(245,240,232,0.35);margin-bottom:10px;text-transform:uppercase;">Bureau Projet</div><p style="font-size:11px;color:rgba(245,240,232,0.45);line-height:1.6;margin-bottom:14px;flex:1;">Grille de scoring pondéré pour objectiver la décision de répondre ou non à un AO, basée sur les critères historiques de ...</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;"><span style="font-size:10px;padding:3px 9px;border-radius:100px;background:rgba(92,122,107,0.15);color:#8aad9c;border:1px solid rgba(92,122,107,0.25);">3 j POC</span></div><button style="width:100%;padding:9px;background:transparent;border:1px solid rgba(92,122,107,0.35);border-radius:8px;color:#8aad9c;font-size:12px;font-weight:600;cursor:pointer;">&lt;-&gt; Changer ce projet</button></div></div><div style="background:rgba(245,240,232,0.04);border:1px solid rgba(58,108,168,0.35);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;"><div style="height:4px;background:linear-gradient(90deg,#1E3A5F,#3a6ca8);"></div><div style="padding:20px;flex:1;display:flex;flex-direction:column;"><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6a9fd8;margin-bottom:6px;">Semaine 2 - Jour 7-&gt;9</div><div style="font-size:15px;font-weight:600;color:#F5F0E8;margin-bottom:6px;line-height:1.3;">Construction automatique d...</div><div style="font-size:10px;font-weight:600;color:rgba(245,240,232,0.35);margin-bottom:10px;text-transform:uppercase;">Bureau Projet</div><p style="font-size:11px;color:rgba(245,240,232,0.45);line-height:1.6;margin-bottom:14px;flex:1;">Génération semi-automatique des mémoires techniques (notes de process, descriptions machines, présentation Vauché) à par...</p><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;"><span style="font-size:10px;padding:3px 9px;border-radius:100px;background:rgba(92,122,107,0.15);color:#8aad9c;border:1px solid rgba(92,122,107,0.25);">3 j POC</span></div><button style="width:100%;padding:9px;background:transparent;border:1px solid rgba(58,108,168,0.35);border-radius:8px;color:#6a9fd8;font-size:12px;font-weight:600;cursor:pointer;">&lt;-&gt; Changer ce projet</button></div></div></div>
+        <div id="sprintTimeline" style="margin-top:32px;background:rgba(245,240,232,0.03);border:1px solid rgba(245,240,232,0.08);border-radius:12px;padding:24px;"><div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:16px;">Planning 9 jours</div><div style="display:flex;gap:0;position:relative;"><div style="position:absolute;top:18px;left:0;right:0;height:2px;background:rgba(245,240,232,0.08);"></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #C8A96E;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#C8A96E;">1</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Récupération commandes</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #C8A96E;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#C8A96E;">2</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Récupération commandes</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #C8A96E;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#C8A96E;">3</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Récupération commandes</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #8aad9c;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#8aad9c;">4</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Score Go</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #8aad9c;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#8aad9c;">5</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Score Go</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #8aad9c;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#8aad9c;">6</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Score Go</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #6a9fd8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#6a9fd8;">7</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Construction automatique</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #6a9fd8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#6a9fd8;">8</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Construction automatique</div></div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;"><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid #6a9fd8;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#6a9fd8;">9</div><div style="font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;">Construction automatique</div></div></div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding: 40px; background: var(--cream);">
+      <button class="btn-pdf" style="background: var(--dark); color: var(--cream); padding: 14px 36px; font-size: 15px;" onclick="showSection(&#39;projects&#39;)">
+        Explorer tous les use cases →
+      </button>
+    </div>
+  </div>
+</section>
+<!-- SECTION: PROJECTS -->
+<section id="projects" class="active">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Catalogue complet</div>
+      <h2 class="section-title">Use Cases IA identifiés</h2>
+      <p class="section-desc">Cliquez sur une carte pour éditer les scores ROI, faisabilité et les estimations de jours.</p>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filtrer :</span>
+      <button class="filter-btn active" onclick="filterProjects(&#39;all&#39;, this)">Tous</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;Comptabilité&#39;, this)">Comptabilité</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;Achats&#39;, this)">Achats</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;Bureau Projet&#39;, this)">Bureau Projet</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;Bureau Études&#39;, this)">Bureau d'Études</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;SAV&#39;, this)">SAV</button>
+      <button class="filter-btn" onclick="filterProjects(&#39;Direction&#39;, this)">Direction</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid">
+    <div class="project-card" onclick="openModal(1)">
+      <div class="card-accent gold"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept gold">Comptabilité</div>
+          
+        </div>
+        <div class="card-title">Automatisation des factures fournisseurs</div>
+        <div class="card-desc">Traitement automatique des ~400 factures achats mensuelles : capture, vérification des informations de livrais...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">6 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">12j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 8 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Yooz</span><span class="card-tool-pill">Rossum</span><span class="card-tool-pill">Docuware</span>
+          <span class="card-tool-more">+1</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(2)">
+      <div class="card-accent gold"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept gold">Comptabilité</div>
+          
+        </div>
+        <div class="card-title">Automatisation des paiements fournisseurs</div>
+        <div class="card-desc">Élimination des saisies manuelles répétées (tableau Excel -&gt; Everwin -&gt; journal de banque). Génération automat...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">3 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 4 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Kyriba</span><span class="card-tool-pill">Cegid XRP</span><span class="card-tool-pill">Agicap</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(3)">
+      <div class="card-accent gold"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept gold">Comptabilité</div>
+          
+        </div>
+        <div class="card-title">Gestion automatisée des notes de frais</div>
+        <div class="card-desc">Connexion entre la gestion des notes de frais et Everwin, avec branchement comptabilité automatique....</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">5 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">5j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 5 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Jenji</span><span class="card-tool-pill">N2F</span><span class="card-tool-pill">Expensya</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(4)">
+      <div class="card-accent gold"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept gold">Comptabilité</div>
+          
+        </div>
+        <div class="card-title">Facturation électronique (Korus)</div>
+        <div class="card-desc">Automatisation de la facturation sur les collectivités via Korus, incluant la vérification des poids et la con...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">4 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">8j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 6 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Chorus Pro / Korus</span><span class="card-tool-pill">Yooz</span><span class="card-tool-pill">Pennylane</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(5)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Achats</div>
+          
+        </div>
+        <div class="card-title">Matching commandes / factures</div>
+        <div class="card-desc">Corrélation automatique entre commande et facture fournisseur. Intégration directe si identique, redirection v...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">4 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">12j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 7 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Esker</span><span class="card-tool-pill">Coupa</span><span class="card-tool-pill">Basware</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(6)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Achats</div>
+          
+        </div>
+        <div class="card-title">Agent comparatif appels d'offres</div>
+        <div class="card-desc">IA qui analyse et compare les offres fournisseurs sur des critères objectifs, s'appuyant sur l'historique des ...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">3 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">11 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 7 j éco. LLM</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Ivalua</span><span class="card-tool-pill">Sievo</span><span class="card-tool-pill">Claude / GPT-4</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(7)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Achats</div>
+          
+        </div>
+        <div class="card-title">Récupération commandes mal renseignées</div>
+        <div class="card-desc">Identification automatique des commandes/achats incomplets ou incorrectement renseignés, avec workflow de corr...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">3 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">8j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 4 j éco. no-code</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Make (Integromat)</span><span class="card-tool-pill">Power Automate</span><span class="card-tool-pill">Zapier</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(8)">
+      <div class="card-accent blue"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept blue">Bureau Projet</div>
+          <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(92,122,107,0.12);color:var(--sage);border:1px solid rgba(92,122,107,0.25);padding:2px 7px;border-radius:4px;">⚡ 9 jours</span>
+        </div>
+        <div class="card-title">Construction automatique de mémoires techniques</div>
+        <div class="card-desc">Génération semi-automatique des mémoires techniques (notes de process, descriptions machines, présentation Vau...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">4 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">8 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 17 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Tenderbolt AI</span><span class="card-tool-pill">Specgen.ai</span><span class="card-tool-pill">Claude API + RAG</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(9)">
+      <div class="card-accent blue"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept blue">Bureau Projet</div>
+          
+        </div>
+        <div class="card-title">Analyse automatique des cahiers des charges</div>
+        <div class="card-desc">IA qui lit un CDC client et en extrait les éléments clés, signale les incohérences et prépare une structure de...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">3 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">20j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">9 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 13 j éco. LLM</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Claude (Anthropic)</span><span class="card-tool-pill">Azure Document Intelligence</span><span class="card-tool-pill">LlamaIndex</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(10)">
+      <div class="card-accent blue"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept blue">Bureau Projet</div>
+          <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(92,122,107,0.12);color:var(--sage);border:1px solid rgba(92,122,107,0.25);padding:2px 7px;border-radius:4px;">⚡ 9 jours</span>
+        </div>
+        <div class="card-title">Score Go / No-Go sur les appels d'offres</div>
+        <div class="card-desc">Grille de scoring pondéré pour objectiver la décision de répondre ou non à un AO, basée sur les critères histo...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">2 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">8j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">5 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 9 j éco. ML léger</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">HubSpot + IA</span><span class="card-tool-pill">Salesforce Einstein</span><span class="card-tool-pill">Modèle custom ML</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(11)">
+      <div class="card-accent blue"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept blue">Bureau Projet</div>
+          
+        </div>
+        <div class="card-title">Scraping &amp; identification d'appels d'offres</div>
+        <div class="card-desc">Veille automatisée sur les plateformes de marchés publics et privés pour identifier les AO pertinents pour Vau...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">6 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">5j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">11 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 5 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Opportunities.io</span><span class="card-tool-pill">Marchés Online</span><span class="card-tool-pill">Apify + Make</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(12)">
+      <div class="card-accent blue"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept blue">Bureau Projet</div>
+          
+        </div>
+        <div class="card-title">Lecture &amp; analyse de contrats</div>
+        <div class="card-desc">IA qui identifie et signale les clauses défavorables, risques contractuels et écarts par rapport aux standards...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">3 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">8j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">4 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 6 j éco. LLM</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Luminance</span><span class="card-tool-pill">Ironclad</span><span class="card-tool-pill">Claude (Anthropic)</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(13)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Direction</div>
+          
+        </div>
+        <div class="card-title">Planning centralisé automatique</div>
+        <div class="card-desc">Planification automatisée enrichie des données contrats, ressources et contraintes opérationnelles. Nécessite ...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">10 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">20j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">20 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 8 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Planisware</span><span class="card-tool-pill">Forecast.app</span><span class="card-tool-pill">MS Project + Copilot</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(14)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Direction</div>
+          
+        </div>
+        <div class="card-title">IA gestion des réserves de chantier</div>
+        <div class="card-desc">Statistiques sur les réserves levées historiquement, anticipation des problèmes récurrents. Nécessite de struc...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">4 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">15j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">14 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 7 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Dalux</span><span class="card-tool-pill">Finalcad</span><span class="card-tool-pill">Power BI + Azure ML</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(15)">
+      <div class="card-accent sage"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept sage">Bureau Études</div>
+          
+        </div>
+        <div class="card-title">Automatisation des trémis &amp; goulottes</div>
+        <div class="card-desc">Recherche par similarité dans l'historique SolidWorks pour retrouver un trémis équivalent. Gain réel mais dépe...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">15 j</span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">25 j</span>
+          </div>
+          
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">SolidWorks API + IA</span><span class="card-tool-pill">Physna (Google)</span><span class="card-tool-pill">Script Python custom</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(16)">
+      <div class="card-accent sage"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept sage">Bureau Études</div>
+          <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(92,122,107,0.12);color:var(--sage);border:1px solid rgba(92,122,107,0.25);padding:2px 7px;border-radius:4px;">⚡ 9 jours</span>
+        </div>
+        <div class="card-title">Automatisation des dessins de pieds et supports</div>
+        <div class="card-desc">Génération automatique des 300+ dessins de pieds et supports récurrents via les outils paramétriques SolidWork...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">4 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">12j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">11 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 15 j éco. SW natif</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">SolidWorks DriveWorksXpress</span><span class="card-tool-pill">DriveWorks Pro</span><span class="card-tool-pill">Onshape FeatureScript</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(17)">
+      <div class="card-accent sage"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept sage">Bureau Études</div>
+          
+        </div>
+        <div class="card-title">Bibliothèque intelligente de dessins</div>
+        <div class="card-desc">Centralisation et indexation sémantique de tous les dessins existants pour faciliter la réutilisation et rédui...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">20 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">40 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 7 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">OpenBOM</span><span class="card-tool-pill">Autodesk Vault</span><span class="card-tool-pill">Qdrant + Embeddings</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(18)">
+      <div class="card-accent sage"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept sage">Bureau Études</div>
+          
+        </div>
+        <div class="card-title">Intranet projet &amp; centralisation documentaire</div>
+        <div class="card-desc">Plateforme centralisée de documentation projet avec recherche automatique des normes manquantes et extraction ...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">2 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">10 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 10 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Confluence + IA</span><span class="card-tool-pill">Notion</span><span class="card-tool-pill">M-Files</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(19)">
+      <div class="card-accent "></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept ">SAV</div>
+          
+        </div>
+        <div class="card-title">Outil de formation SAV intelligent</div>
+        <div class="card-desc">Base de connaissances SAV couvrant les problèmes récurrents, enrichie progressivement. Impact limité au périmè...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">8 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">10j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">16 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 10 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Guru</span><span class="card-tool-pill">Tettra</span><span class="card-tool-pill">Chatbot RAG custom</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(20)">
+      <div class="card-accent "></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept ">SAV</div>
+          
+        </div>
+        <div class="card-title">Amélioration des devis SAV (Excel)</div>
+        <div class="card-desc">Modernisation et automatisation partielle des fichiers Excel de devis SAV existants, avec mise à jour automati...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">2 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">5j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">5 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 3 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">Excel + Copilot</span><span class="card-tool-pill">Sellsy</span><span class="card-tool-pill">Quoter</span>
+          
+        </div>
+      </div>
+    </div>
+    <div class="project-card" onclick="openModal(21)">
+      <div class="card-accent rust"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept rust">Direction</div>
+          
+        </div>
+        <div class="card-title">Traduction automatique des documents terrain</div>
+        <div class="card-desc">Traduction automatique des documents techniques pour le personnel des usines dans les pays d'installation. ROI...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">2 j <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">3j</span></span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">4 j</span>
+          </div>
+          <div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ 4 j éco. SaaS</span></div>
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars"><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span><span class="star filled sage" "="">★</span></div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars"><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star filled gold" "="">★</span><span class="star " "="">★</span><span class="star " "="">★</span></div>
+          </div>
+        </div>
+        
+        <div class="card-tools">
+          <span class="card-tool-pill">DeepL Pro</span><span class="card-tool-pill">DeepL API</span><span class="card-tool-pill">ModernMT</span>
+          
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- SECTION: MATRIX -->
+<section id="matrix" class="">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Priorisation visuelle</div>
+      <h2 class="section-title">Matrice ROI × Faisabilité</h2>
+      <p class="section-desc">Glissez les projets pour les repositionner. Les scores se mettent à jour automatiquement.</p>
+    </div>
+    <div class="matrix-legend" id="matrixLegend"><div class="legend-item"><div class="legend-dot" style="background:#C8A96E"></div>Comptabilité</div><div class="legend-item"><div class="legend-dot" style="background:#B85C38"></div>Achats</div><div class="legend-item"><div class="legend-dot" style="background:#1E3A5F"></div>Bureau Projet</div><div class="legend-item"><div class="legend-dot" style="background:#8B5E3C"></div>Direction</div><div class="legend-item"><div class="legend-dot" style="background:#5C7A6B"></div>Bureau Études</div><div class="legend-item"><div class="legend-dot" style="background:#9B6B9B"></div>SAV</div></div>
+    <div class="matrix-container">
+      <div style="position:relative; padding-left:48px; padding-bottom:36px;">
+        <div class="matrix-axis-y">ROI / Impact</div>
+        <div class="matrix-wrapper">
+          <div class="matrix-canvas" id="matrixCanvas">
+            <div class="quad-tl"></div>
+            <div class="quad-tr"></div>
+            <div class="quad-bl"></div>
+            <div class="quad-br"></div>
+            <div class="quadrant-label" style="top:10px;left:12px;color:var(--sage)">Quick Wins</div>
+            <div class="quadrant-label" style="top:10px;right:12px;color:var(--gold)">Prioritaires</div>
+            <div class="quadrant-label" style="bottom:10px;left:12px;color:#aaa">À reconsidérer</div>
+            <div class="quadrant-label" style="bottom:10px;right:12px;color:var(--rust)">Projets lourds</div>
+          <div class="dot-wrapper" data-id="1" style="left: 58.437%; top: 29.0896%;">
+      <div class="dot-circle" style="background:#C8A96E">1</div>
+      <div class="dot-label">Automatisation des factures fournisseurs</div>
+    </div><div class="dot-wrapper" data-id="2" style="left: 55.0599%; top: 37.6473%;">
+      <div class="dot-circle" style="background:#C8A96E">2</div>
+      <div class="dot-label">Automatisation des paiements fournisseurs</div>
+    </div><div class="dot-wrapper" data-id="3" style="left: 62.3893%; top: 60.0839%;">
+      <div class="dot-circle" style="background:#C8A96E">3</div>
+      <div class="dot-label">Gestion automatisée des notes de frais</div>
+    </div><div class="dot-wrapper" data-id="4" style="left: 58.1265%; top: 46.2274%;">
+      <div class="dot-circle" style="background:#C8A96E">4</div>
+      <div class="dot-label">Facturation électronique (Korus)</div>
+    </div><div class="dot-wrapper" data-id="5" style="left: 62.0535%; top: 8.44954%;">
+      <div class="dot-circle" style="background:#B85C38">5</div>
+      <div class="dot-label">Matching commandes / factures</div>
+    </div><div class="dot-wrapper" data-id="6" style="left: 38.6316%; top: 22.1053%;">
+      <div class="dot-circle" style="background:#B85C38">6</div>
+      <div class="dot-label">Agent comparatif appels d'offres</div>
+    </div><div class="dot-wrapper" data-id="7" style="left: 65.513%; top: 51.4304%;">
+      <div class="dot-circle" style="background:#B85C38">7</div>
+      <div class="dot-label">Récupération commandes mal renseignées</div>
+    </div><div class="dot-wrapper" data-id="8" style="left: 78.7368%; top: 4.73684%;">
+      <div class="dot-circle" style="background:#1E3A5F">8</div>
+      <div class="dot-label">Construction automatique de mémoires techniques</div>
+    </div><div class="dot-wrapper" data-id="9" style="left: 56.5783%; top: 15.8429%;">
+      <div class="dot-circle" style="background:#1E3A5F">9</div>
+      <div class="dot-label">Analyse automatique des cahiers des charges</div>
+    </div><div class="dot-wrapper" data-id="10" style="left: 68.0457%; top: 37.0614%;">
+      <div class="dot-circle" style="background:#1E3A5F">10</div>
+      <div class="dot-label">Score Go / No-Go sur les appels d'offres</div>
+    </div><div class="dot-wrapper" data-id="11" style="left: 89.0526%; top: 22.9825%;">
+      <div class="dot-circle" style="background:#1E3A5F">11</div>
+      <div class="dot-label">Scraping &amp; identification d'appels d'offres</div>
+    </div><div class="dot-wrapper" data-id="12" style="left: 90%; top: 59.0246%;">
+      <div class="dot-circle" style="background:#1E3A5F">12</div>
+      <div class="dot-label">Lecture &amp; analyse de contrats</div>
+    </div><div class="dot-wrapper" data-id="13" style="left: 10%; top: 10%;">
+      <div class="dot-circle" style="background:#8B5E3C">13</div>
+      <div class="dot-label">Planning centralisé automatique</div>
+    </div><div class="dot-wrapper" data-id="14" style="left: 38.1053%; top: 60.7018%;">
+      <div class="dot-circle" style="background:#8B5E3C">14</div>
+      <div class="dot-label">IA gestion des réserves de chantier</div>
+    </div><div class="dot-wrapper" data-id="15" style="left: 45.1579%; top: 5.78947%;">
+      <div class="dot-circle" style="background:#5C7A6B">15</div>
+      <div class="dot-label">Automatisation des trémis &amp; goulottes</div>
+    </div><div class="dot-wrapper" data-id="16" style="left: 64.0558%; top: 22.0508%;">
+      <div class="dot-circle" style="background:#5C7A6B">16</div>
+      <div class="dot-label">Automatisation des dessins de pieds et supports</div>
+    </div><div class="dot-wrapper" data-id="17" style="left: 70.1463%; top: 64.9888%;">
+      <div class="dot-circle" style="background:#5C7A6B">17</div>
+      <div class="dot-label">Bibliothèque intelligente de dessins</div>
+    </div><div class="dot-wrapper" data-id="18" style="left: 76.1553%; top: 42.3865%;">
+      <div class="dot-circle" style="background:#5C7A6B">18</div>
+      <div class="dot-label">Intranet projet &amp; centralisation documentaire</div>
+    </div><div class="dot-wrapper" data-id="19" style="left: 79.2301%; top: 15.9243%;">
+      <div class="dot-circle" style="background:#9B6B9B">19</div>
+      <div class="dot-label">Outil de formation SAV intelligent</div>
+    </div><div class="dot-wrapper" data-id="20" style="left: 90%; top: 59.0246%;">
+      <div class="dot-circle" style="background:#9B6B9B">20</div>
+      <div class="dot-label">Amélioration des devis SAV (Excel)</div>
+    </div><div class="dot-wrapper" data-id="21" style="left: 89.8947%; top: 46.3158%;">
+      <div class="dot-circle" style="background:#8B5E3C">21</div>
+      <div class="dot-label">Traduction automatique des documents terrain</div>
+    </div></div>
+        </div>
+        <div class="matrix-axis-x">Faisabilité technique →</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:#aaa;margin-top:12px;text-align:center;">💡 Passez la souris sur un point pour voir le nom — glissez pour repositionner &nbsp;·&nbsp; <button onclick="resetMatrixPositions()" style="background:none;border:none;color:var(--gold);font-size:12px;cursor:pointer;font-family:&#39;DM Sans&#39;,sans-serif;text-decoration:underline;">Réorganiser automatiquement</button></p>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-dept " id="modalDept">SAV</div>
+        <div class="modal-title" id="modalTitle">Outil de formation SAV intelligent</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-label">Impact &amp; Objectif</div>
+        <p id="modalDesc">Base de connaissances SAV couvrant les problèmes récurrents, enrichie progressivement. Impact limité au périmètre SAV mais valeur réelle pour Yann et son équipe.</p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Bénéfices attendus</div>
+        <ul id="modalBenefits"><li>Autonomie des techniciens accrue</li><li>Réduction du temps de résolution</li><li>Capitalisation du savoir-faire SAV</li></ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">🛠 Outils IA existants</div>
+        <div class="tools-grid" id="modalTools"><div class="tool-item">
+        <span class="tool-badge ">Knowledge base</span>
+        <div class="tool-content">
+          <div class="tool-name">
+            Guru
+            <a class="tool-link" href="https://www.getguru.com/" target="_blank" rel="noopener">↗ site</a>
+          </div>
+          <div class="tool-note">Base de connaissances avec IA de suggestion contextuelle pour les techniciens</div>
+        </div>
+      </div><div class="tool-item">
+        <span class="tool-badge ">Wiki IA</span>
+        <div class="tool-content">
+          <div class="tool-name">
+            Tettra
+            <a class="tool-link" href="https://tettra.com/" target="_blank" rel="noopener">↗ site</a>
+          </div>
+          <div class="tool-note">Wiki équipe avec IA de recherche et mise à jour automatique des procédures</div>
+        </div>
+      </div><div class="tool-item">
+        <span class="tool-badge custom">Sur-mesure</span>
+        <div class="tool-content">
+          <div class="tool-name">
+            Chatbot RAG custom
+            
+          </div>
+          <div class="tool-note">Agent conversationnel sur documentation SAV Vauché - approche recommandée Esteka Data</div>
+        </div>
+      </div></div>
+      </div>
+      <div class="modal-row">
+        <div class="modal-field">
+          <label>Jours POC</label>
+          <input type="number" id="inputPOC" min="1" max="200" placeholder="ex: 10">
+        </div>
+        <div class="modal-field">
+          <label>Jours Projet Total</label>
+          <input type="number" id="inputTotal" min="1" max="500" placeholder="ex: 60">
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Scoring</div>
+        <div class="slider-group">
+          <div class="slider-item">
+            <label>ROI / Impact Business <span id="roiVal">5</span>/5</label>
+            <input type="range" id="sliderROI" min="1" max="5" step="1" value="3" oninput="updateSliderVal(&#39;roiVal&#39;, this.value)">
+          </div>
+          <div class="slider-item">
+            <label>Faisabilité technique <span id="feasVal">4</span>/5</label>
+            <input type="range" id="sliderFeas" min="1" max="5" step="1" value="3" oninput="updateSliderVal(&#39;feasVal&#39;, this.value)">
+          </div>
+          <div class="slider-item">
+            <label>Priorité globale <span id="prioVal">4</span>/5</label>
+            <input type="range" id="sliderPrio" min="1" max="5" step="1" value="3" oninput="updateSliderVal(&#39;prioVal&#39;, this.value)">
+          </div>
+        </div>
+      </div>
+      <button class="modal-save" onclick="saveModal()">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">ok Use case mis à jour</div>
+
+<script>
+// --- DATA -------------------------------------------------------------------
+const DEPT_COLORS = {
+  'Comptabilité': { accent: 'gold', label: 'gold', color: '#C8A96E', bg: '#6B4226' },
+  'Achats': { accent: 'rust', label: 'rust', color: '#B85C38', bg: '#6B4226' },
+  'Bureau Projet': { accent: 'blue', label: 'blue', color: '#1E3A5F', bg: '#1E3A5F' },
+  'Bureau Études': { accent: 'sage', label: 'sage', color: '#5C7A6B', bg: '#5C7A6B' },
+  'SAV': { accent: '', label: '', color: '#9B6B9B', bg: '#6B3F6B' },
+  'Direction': { accent: 'rust', label: 'rust', color: '#8B5E3C', bg: '#5C3A1E' },
+};
+
+const PROJECTS = [
+  {
+    id: 1, dept: 'Comptabilité',
+    title: 'Automatisation des factures fournisseurs',
+    desc: 'Traitement automatique des ~400 factures achats mensuelles : capture, vérification des informations de livraison/pays/nature, intégration dans Everwin et suivi Excel.',
+    benefits: ['Réduction des allers-retours entre services', 'Gain estimé : 80% de saisie automatique', 'Fiabilisation du contrôle factures'],
+    tools: [
+      { name: 'Yooz', url: 'https://www.yooz.fr', badge: 'Clé en main', note: 'Leader FR dématérialisation factures, connecteurs ERP nombreux' },
+      { name: 'Rossum', url: 'https://rossum.ai', badge: 'IA avancée', note: 'Extraction intelligente par LLM, très bonne gestion des exceptions' },
+      { name: 'Docuware', url: 'https://start.docuware.com', badge: 'GED+', note: 'Capture + workflow validation + archivage réglementaire' },
+      { name: 'Spendesk', url: 'https://www.spendesk.com/fr', badge: 'SaaS FR', note: 'Gestion dépenses B2B avec OCR et validation mobile intégrés' },
+    ],
+    roi: 3, feas: 2, prio: 3, poc: 5, pocOrig: 12, total: 30, toolSaving: '8 j éco. SaaS',
+  },
+  {
+    id: 2, dept: 'Comptabilité',
+    title: 'Automatisation des paiements fournisseurs',
+    desc: 'Élimination des saisies manuelles répétées (tableau Excel -> Everwin -> journal de banque). Génération automatique des RIBs et regroupement par fournisseur.',
+    benefits: ['Triple saisie éliminée', 'Réduction des erreurs de paiement', 'Gain de temps quotidien significatif pour Deborah'],
+    tools: [
+      { name: 'Kyriba', url: 'https://www.kyriba.fr', badge: 'Trésorerie', note: 'Automatisation complète des flux de paiement et réconciliation bancaire' },
+      { name: 'Cegid XRP', url: 'https://www.cegid.com', badge: 'ERP FR', note: 'Module AP avec automatisation des ordres de paiement et virements SEPA' },
+      { name: 'Agicap', url: 'https://agicap.com/fr', badge: 'Cash flow', note: 'Synchronisation bancaire temps réel + prévision trésorerie IA' },
+    ],
+    roi: 3, feas: 2, prio: 3, poc: 4, pocOrig: 10, total: 20, toolSaving: '4 j éco. SaaS',
+  },
+  {
+    id: 3, dept: 'Comptabilité',
+    title: 'Gestion automatisée des notes de frais',
+    desc: 'Connexion entre la gestion des notes de frais et Everwin, avec branchement comptabilité automatique.',
+    benefits: ["Suppression des saisies manuelles d'entrée", 'Conformité comptable renforcée'],
+    tools: [
+      { name: 'Jenji', url: 'https://jenji.io/fr', badge: 'Leader FR', note: 'OCR tickets + IA catégorisation + export comptable automatique' },
+      { name: 'N2F', url: 'https://www.n2f.com', badge: 'PME FR', note: 'Solution française simple, connecteurs ERP, conformité fiscale intégrée' },
+      { name: 'Expensya', url: 'https://www.expensya.com/fr', badge: 'IA mobile', note: 'Extraction automatique des données de reçus par IA, app mobile intuitive' },
+    ],
+    roi: 2, feas: 4, prio: 2, poc: 2, pocOrig: 5, total: 8, toolSaving: '5 j éco. SaaS',
+  },
+  {
+    id: 4, dept: 'Comptabilité',
+    title: 'Facturation électronique (Korus)',
+    desc: 'Automatisation de la facturation sur les collectivités via Korus, incluant la vérification des poids et la conformité des envois.',
+    benefits: ['Conformité réglementaire', 'Réduction délai de facturation', 'Fiabilisation envois collectivités'],
+    tools: [
+      { name: 'Chorus Pro / Korus', url: 'https://chorus-pro.gouv.fr', badge: 'Obligatoire', note: 'Plateforme nationale obligatoire pour facturation collectivités - natif' },
+      { name: 'Yooz', url: 'https://www.yooz.fr', badge: 'Connecteur', note: 'Connecteur Chorus Pro natif, automatisation dépôt et suivi statut' },
+      { name: 'Pennylane', url: 'https://www.pennylane.com/fr', badge: 'Comptabilité IA', note: 'Intégration facture électronique + comptabilité temps réel, fait pour PME FR' },
+    ],
+    roi: 2, feas: 3, prio: 2, poc: 3, pocOrig: 8, total: 15, toolSaving: '6 j éco. SaaS',
+  },
+  {
+    id: 5, dept: 'Achats',
+    title: 'Matching commandes / factures',
+    desc: 'Corrélation automatique entre commande et facture fournisseur. Intégration directe si identique, redirection vers traitement humain en cas de différence.',
+    benefits: ['Gain estimé : 60-70% de saisie automatique (données bien structurées)', 'Détection d\'anomalies en temps réel', 'Réduction charge équipe achats'],
+    tools: [
+      { name: 'Esker', url: 'https://www.esker.fr', badge: 'Référence FR', note: 'Rapprochement 3 voies (BC/BL/facture) avec IA, leader sur le segment PME/ETI' },
+      { name: 'Coupa', url: 'https://www.coupa.com', badge: 'Enterprise', note: 'Suite P2P complète avec matching intelligent et workflows configurable' },
+      { name: 'Basware', url: 'https://www.basware.com/fr-fr', badge: 'Spécialiste', note: 'Matching automatisé + gestion des exceptions + analytics achats' },
+    ],
+    roi: 3, feas: 3, prio: 3, poc: 5, pocOrig: 12, total: 25, toolSaving: '7 j éco. SaaS',
+  },
+  {
+    id: 6, dept: 'Achats',
+    title: 'Agent comparatif appels d\'offres',
+    desc: 'IA qui analyse et compare les offres fournisseurs sur des critères objectifs, s\'appuyant sur l\'historique des prix pour déclencher des alertes d\'anomalies tarifaires.',
+    benefits: ['Gain de temps sur négociations', 'Alerting sur dérives de prix', 'Mémoire historique fournisseurs'],
+    tools: [
+      { name: 'Ivalua', url: 'https://www.ivalua.com/fr', badge: 'IA achats', note: 'Analyse d\'offres fournisseurs par IA, scoring automatique sur critères multiples' },
+      { name: 'Sievo', url: 'https://sievo.com', badge: 'Analytics', note: 'Analyse des dépenses et benchmarks prix fournisseurs avec alerting' },
+      { name: 'Claude / GPT-4', url: 'https://claude.ai', badge: 'LLM générique', note: 'Analyse comparative de documents d\'offres via prompt engineering - peu coûteux' },
+    ],
+    roi: 3, feas: 3, prio: 3, poc: 5, pocOrig: 10, total: 20, toolSaving: '7 j éco. LLM',
+  },
+  {
+    id: 7, dept: 'Achats',
+    title: 'Récupération commandes mal renseignées',
+    desc: 'Identification automatique des commandes/achats incomplets ou incorrectement renseignés, avec workflow de correction.',
+    benefits: ['Réduction des erreurs de commande', 'Automatisation des relances internes', 'Fiabilisation des données achats'],
+    tools: [
+      { name: 'Make (Integromat)', url: 'https://www.make.com/fr', badge: 'No-code', note: 'Automation workflows de détection et relance sur les champs manquants dans Everwin' },
+      { name: 'Power Automate', url: 'https://powerautomate.microsoft.com/fr-fr', badge: 'Microsoft', note: 'Règles de validation + notifications automatiques + intégration ERP native' },
+      { name: 'Zapier', url: 'https://zapier.com', badge: 'Connecteur', note: 'Déclencheurs sur anomalies de données + alertes email/Slack en temps réel' },
+    ],
+    roi: 2, feas: 4, prio: 2, poc: 3, pocOrig: 8, total: 15, toolSaving: '4 j éco. no-code',
+  },
+  {
+    id: 8, dept: 'Bureau Projet',
+    title: 'Construction automatique de mémoires techniques',
+    desc: 'Génération semi-automatique des mémoires techniques (notes de process, descriptions machines, présentation Vauché) à partir du cahier des charges client. Réduction majeure sur les offres sur mesure.',
+    benefits: ['30-50% de la rédaction automatisée (base documentaire à constituer)', 'Cohérence entre les mémoires', 'Libérer les ingénieurs sur la valeur ajoutée'],
+    tools: [
+      { name: 'Tenderbolt AI', url: 'https://www.tenderbolt.ai', badge: '⚡ Clé en main', note: 'Spécialisé AO/mémoires techniques - gain de temps réel mais nécessite base de contenu' },
+      { name: 'Specgen.ai', url: 'https://specgen.ai/fr', badge: '⚡ Clé en main', note: 'Génération native dans Word, souverain, analyse conformité CDC incluse' },
+      { name: 'Claude API + RAG', url: 'https://claude.ai', badge: 'Sur-mesure', note: 'Agent RAG sur base documentaire Vauché - approche Esteka, nécessite alimentation préalable' },
+    ],
+    roi: 4, feas: 2, prio: 3, poc: 3, pocOrig: 10, total: 30, toolSaving: '17 j éco. SaaS', quickstart: true,
+  },
+  {
+    id: 9, dept: 'Bureau Projet',
+    title: 'Analyse automatique des cahiers des charges',
+    desc: 'IA qui lit un CDC client et en extrait les éléments clés, signale les incohérences et prépare une structure de réponse. Le synoptique reste à valider par un expert.',
+    benefits: ['Réduction temps d\'analyse CDC', 'Détection des incohérences en amont', 'Trame de réponse pré-structurée'],
+    tools: [
+      { name: 'Claude (Anthropic)', url: 'https://claude.ai', badge: 'LLM analyse', note: 'Extraction structurée depuis PDF/Word de CDC - excellent sur documents longs et complexes' },
+      { name: 'Azure Document Intelligence', url: 'https://azure.microsoft.com/fr-fr/products/ai-services/ai-document-intelligence', badge: 'OCR+IA', note: 'Extraction de champs structurés depuis tout format de document technique' },
+      { name: 'LlamaIndex', url: 'https://www.llamaindex.ai', badge: 'RAG framework', note: 'Framework pour construire un pipeline de lecture/extraction sur la base Vauché' },
+    ],
+    roi: 3, feas: 2, prio: 2, poc: 8, pocOrig: 20, total: 50, toolSaving: '13 j éco. LLM',
+  },
+  {
+    id: 10, dept: 'Bureau Projet',
+    title: 'Score Go / No-Go sur les appels d\'offres',
+    desc: 'Grille de scoring pondéré pour objectiver la décision de répondre ou non à un AO, basée sur les critères historiques de succès Vauché.',
+    benefits: ['Décision objectivée en 10 min', 'Moins de temps perdu sur les AO perdants', 'Capitalisation sur l\'expérience passée'],
+    tools: [
+      { name: 'HubSpot + IA', url: 'https://www.hubspot.fr', badge: 'CRM + scoring', note: 'Scoring prédictif natif sur les opportunités, entraînable sur l\'historique Vauché' },
+      { name: 'Salesforce Einstein', url: 'https://www.salesforce.com/fr/products/einstein/overview', badge: 'ML scoring', note: 'Modèle prédictif win/loss avec scoring automatique des AO entrants' },
+      { name: 'Modèle custom ML', url: '#', badge: 'Sur-mesure', note: 'Modèle simple sur historique Vauché - approche légère et très explicable' },
+    ],
+    roi: 3, feas: 4, prio: 4, poc: 3, pocOrig: 8, total: 15, toolSaving: '9 j éco. ML léger', quickstart: true,
+  },
+  {
+    id: 11, dept: 'Bureau Projet',
+    title: 'Scraping & identification d\'appels d\'offres',
+    desc: 'Veille automatisée sur les plateformes de marchés publics et privés pour identifier les AO pertinents pour Vauché.',
+    benefits: ['Opportunités manquées réduites', 'Veille concurrentielle passive', 'Alimentation automatique du pipeline'],
+    tools: [
+      { name: 'Opportunities.io', url: 'https://www.opportunities.io', badge: 'Veille AO', note: 'Agrégateur d\'appels d\'offres publics avec filtrage par secteur et mots-clés' },
+      { name: 'Marchés Online', url: 'https://www.marches-online.com', badge: 'Marchés publics FR', note: 'Veille marchés publics français avec alertes email paramétrables' },
+      { name: 'Apify + Make', url: 'https://apify.com', badge: 'No-code scraping', note: 'Scraping configurable de plateformes privées + automatisation workflow' },
+    ],
+    roi: 3, feas: 5, prio: 3, poc: 2, pocOrig: 5, total: 10, toolSaving: '5 j éco. SaaS',
+  },
+  {
+    id: 12, dept: 'Bureau Projet',
+    title: 'Lecture & analyse de contrats',
+    desc: 'IA qui identifie et signale les clauses défavorables, risques contractuels et écarts par rapport aux standards Vauché dans les contrats clients.',
+    benefits: ['Réduction risque juridique', 'Gain de temps revue contrat', 'Uniformité du process de revue'],
+    tools: [
+      { name: 'Luminance', url: 'https://www.luminance.com', badge: 'Contract AI', note: 'Due diligence et review contractuelle automatisée par ML, très précis' },
+      { name: 'Ironclad', url: 'https://ironcladapp.com', badge: 'CLM', note: 'Contract lifecycle management avec IA de review et alertes sur clauses atypiques' },
+      { name: 'Claude (Anthropic)', url: 'https://claude.ai', badge: 'LLM générique', note: 'Analyse de contrats via prompt - solution légère et immédiatement opérationnelle' },
+    ],
+    roi: 3, feas: 4, prio: 3, poc: 4, pocOrig: 8, total: 20, toolSaving: '6 j éco. LLM',
+  },
+  {
+    id: 13, dept: 'Direction',
+    title: 'Planning centralisé automatique',
+    desc: 'Planification automatisée enrichie des données contrats, ressources et contraintes opérationnelles. Nécessite d\'abord une centralisation des données.',
+    benefits: ['Vision globale des charges', 'Détection des sur-allocations', 'Réduction réunions de calage'],
+    tools: [
+      { name: 'Planisware', url: 'https://planisware.com/fr', badge: 'Gestion projet', note: 'PPM avancé avec planification des ressources et intégration ERP, fait pour l\'industrie' },
+      { name: 'Forecast.app', url: 'https://www.forecast.app', badge: 'IA planning', note: 'Planification intelligente des ressources avec prédictions IA sur les charges' },
+      { name: 'MS Project + Copilot', url: 'https://www.microsoft.com/fr-fr/microsoft-365/project', badge: 'Microsoft', note: 'Familier + Copilot pour génération de plannings depuis données contrats' },
+    ],
+    roi: 3, feas: 1, prio: 2, poc: 10, pocOrig: 20, total: 60, toolSaving: '8 j éco. SaaS',
+  },
+  {
+    id: 14, dept: 'Direction',
+    title: 'IA gestion des réserves de chantier',
+    desc: 'Statistiques sur les réserves levées historiquement, anticipation des problèmes récurrents. Nécessite de structurer et centraliser d\'abord les données existantes.',
+    benefits: ['Identification des défauts récurrents', 'Anticipation qualité sur projets futurs', 'Capitalisation sur l\'expérience passée'],
+    tools: [
+      { name: 'Dalux', url: 'https://dalux.com/fr', badge: 'BIM + réserves', note: 'Gestion des réserves et levées sur chantier avec suivi photo et analytics' },
+      { name: 'Finalcad', url: 'https://www.finalcad.com/fr', badge: 'Terrain IA', note: 'Application terrain de suivi qualité avec IA de classification des anomalies' },
+      { name: 'Power BI + Azure ML', url: 'https://powerbi.microsoft.com/fr-fr', badge: 'Analytics', note: 'Dashboard réserves + modèle prédictif sur données historiques Vauché' },
+    ],
+    roi: 3, feas: 2, prio: 2, poc: 8, pocOrig: 15, total: 40, toolSaving: '7 j éco. SaaS',
+  },
+  {
+    id: 15, dept: 'Bureau Études',
+    title: 'Automatisation des trémis & goulottes',
+    desc: 'Recherche par similarité dans l\'historique SolidWorks pour retrouver un trémis équivalent. Gain réel mais dépend du format et de l\'accessibilité des données CAO.',
+    benefits: ['Réduction du temps de gravage et dessin', 'Réutilisation du capital existant', 'Standardisation progressive des pièces'],
+    tools: [
+      { name: 'SolidWorks API + IA', url: 'https://www.solidworks.com/fr', badge: 'CAO natif', note: 'Automatisation paramétrique via macros SolidWorks + similarité géométrique par ML' },
+      { name: 'Physna (Google)', url: 'https://www.physna.com', badge: '3D search IA', note: 'Recherche par similarité géométrique 3D - retrouve des pièces équivalentes en secondes' },
+      { name: 'Script Python custom', url: '#', badge: 'Léger & rapide', note: 'Extraction dimensions SolidWorks -> matching vectoriel dans base historique - POC rapide' },
+    ],
+    roi: 4, feas: 2, prio: 3, poc: 20, total: 75,
+  },
+  {
+    id: 16, dept: 'Bureau Études',
+    title: 'Automatisation des dessins de pieds et supports',
+    desc: 'Génération automatique des 300+ dessins de pieds et supports récurrents via les outils paramétriques SolidWorks natifs - potentiel rapide si règles métier documentées.',
+    benefits: ['Économie significative sur les dessins répétitifs', 'Libération temps dessinateurs', 'Cohérence des livrables'],
+    tools: [
+      { name: 'SolidWorks DriveWorksXpress', url: 'https://www.solidworks.com/fr/product/driveworksxpress', badge: 'Natif SW', note: 'Automatisation de modèles paramétriques dans SolidWorks - gratuit et intégré' },
+      { name: 'DriveWorks Pro', url: 'https://www.driveworks.co.uk', badge: 'Design auto', note: 'Automatisation avancée de CAO avec règles métier, génération de plans en masse' },
+      { name: 'Onshape FeatureScript', url: 'https://www.onshape.com/fr', badge: 'CAO cloud', note: 'Scripting de géométrie paramétrique pour générer des familles de pièces' },
+    ],
+    roi: 3, feas: 3, prio: 3, poc: 5, pocOrig: 12, total: 25, toolSaving: '15 j éco. SW natif', quickstart: true,
+  },
+  {
+    id: 17, dept: 'Bureau Études',
+    title: 'Bibliothèque intelligente de dessins',
+    desc: 'Centralisation et indexation sémantique de tous les dessins existants pour faciliter la réutilisation et réduire au minimum la création de nouveaux dessins.',
+    benefits: ['Réutilisation maximisée', 'Recherche rapide par critères', 'Réduction des doublons'],
+    tools: [
+      { name: 'OpenBOM', url: 'https://www.openbom.com', badge: 'PLM léger', note: 'Gestion de nomenclature et catalogue pièces avec recherche multi-critères' },
+      { name: 'Autodesk Vault', url: 'https://www.autodesk.com/fr/products/vault', badge: 'GED CAO', note: 'PDM dédié ingénierie, gestion versions et recherche dans les fichiers CAO' },
+      { name: 'Qdrant + Embeddings', url: 'https://qdrant.tech', badge: 'Recherche vectorielle', note: 'Base vectorielle pour recherche sémantique sur métadonnées de dessins - approche Esteka' },
+    ],
+    roi: 2, feas: 3, prio: 2, poc: 5, pocOrig: 10, total: 20, toolSaving: '7 j éco. SaaS',
+  },
+  {
+    id: 18, dept: 'Bureau Études',
+    title: 'Intranet projet & centralisation documentaire',
+    desc: 'Plateforme centralisée de documentation projet avec recherche automatique des normes manquantes et extraction des poids depuis SolidWorks.',
+    benefits: ['Accès instantané aux docs projet', 'Normes toujours à jour', 'Réduction des erreurs de conformité'],
+    tools: [
+      { name: 'Confluence + IA', url: 'https://www.atlassian.com/fr/software/confluence', badge: 'Wiki projet', note: 'Base documentaire structurée avec Atlassian Intelligence pour recherche et synthèse' },
+      { name: 'Notion', url: 'https://www.notion.so/fr-fr', badge: 'Tout-en-un', note: 'Wiki + base de données + IA intégrée - setup rapide, très apprécié par les bureaux études' },
+      { name: 'M-Files', url: 'https://www.m-files.com/fr', badge: 'GED métier', note: 'GED avec IA de classement automatique et alertes sur versions de normes' },
+    ],
+    roi: 2, feas: 4, prio: 2, poc: 5, pocOrig: 10, total: 20, toolSaving: '10 j éco. SaaS',
+  },
+  {
+    id: 19, dept: 'SAV',
+    title: 'Outil de formation SAV intelligent',
+    desc: 'Base de connaissances SAV couvrant les problèmes récurrents, enrichie progressivement. Impact limité au périmètre SAV mais valeur réelle pour Yann et son équipe.',
+    benefits: ['Autonomie des techniciens accrue', 'Réduction du temps de résolution', 'Capitalisation du savoir-faire SAV'],
+    tools: [
+      { name: 'Guru', url: 'https://www.getguru.com', badge: 'Knowledge base', note: 'Base de connaissances avec IA de suggestion contextuelle pour les techniciens' },
+      { name: 'Tettra', url: 'https://tettra.com', badge: 'Wiki IA', note: 'Wiki équipe avec IA de recherche et mise à jour automatique des procédures' },
+      { name: 'Chatbot RAG custom', url: '#', badge: 'Sur-mesure', note: 'Agent conversationnel sur documentation SAV Vauché - approche recommandée Esteka Data' },
+    ],
+    roi: 3, feas: 3, prio: 3, poc: 5, pocOrig: 10, total: 25, toolSaving: '10 j éco. SaaS',
+  },
+  {
+    id: 20, dept: 'SAV',
+    title: 'Amélioration des devis SAV (Excel)',
+    desc: 'Modernisation et automatisation partielle des fichiers Excel de devis SAV existants, avec mise à jour automatique des bases tarifaires.',
+    benefits: ['Fiabilité des devis SAV', 'Mise à jour tarifaire simplifiée', 'Gain de temps sur la facturation SAV'],
+    tools: [
+      { name: 'Excel + Copilot', url: 'https://www.microsoft.com/fr-fr/microsoft-365/excel', badge: 'Quick win', note: 'Copilot Microsoft pour automatiser formules, mises à jour tarifaires et validations' },
+      { name: 'Sellsy', url: 'https://www.sellsy.fr', badge: 'CRM devis FR', note: 'Création de devis + catalogue tarifs + signature électronique - remplace les Excel SAV' },
+      { name: 'Quoter', url: 'https://quoter.com', badge: 'Devis IA', note: 'Génération de devis à partir de catalogues produits avec pricing rules automatiques' },
+    ],
+    roi: 2, feas: 5, prio: 2, poc: 2, pocOrig: 5, total: 10, toolSaving: '3 j éco. SaaS',
+  },
+  {
+    id: 21, dept: 'Direction',
+    title: 'Traduction automatique des documents terrain',
+    desc: 'Traduction automatique des documents techniques pour le personnel des usines dans les pays d\'installation. ROI modeste mais déploiement très simple.',
+    benefits: ['Réduction barrière linguistique', 'Documentation terrain accessible', 'Gains sur les chantiers internationaux'],
+    tools: [
+      { name: 'DeepL Pro', url: 'https://www.deepl.com/fr/pro', badge: 'Meilleure qualité', note: 'Traduction technique de très haute qualité, glossaires personnalisés par secteur' },
+      { name: 'DeepL API', url: 'https://www.deepl.com/fr/pro-api', badge: 'Intégration', note: 'API pour automatiser la traduction depuis Everwin ou la GED directement' },
+      { name: 'ModernMT', url: 'https://www.modernmt.com', badge: 'Adaptatif', note: 'Traduction IA qui s\'adapte au vocabulaire technique Vauché au fil du temps' },
+    ],
+    roi: 2, feas: 5, prio: 2, poc: 1, pocOrig: 3, total: 5, toolSaving: '4 j éco. SaaS',
+  },
+];
+
+// --- STATE -------------------------------------------------------------------
+// Chargement initial depuis localStorage (fallback rapide)
+let projects = PROJECTS.map(p => ({...p}));
+let activeFilter = 'all';
+let editingId = null;
+
+// --- JSONBIN SYNC ---
+const JSONBIN_ID  = '69c5101eaa77b81da91fa5af';
+const JSONBIN_KEY = '$2a$10$4dpluVreVJUycwH.M2967.ZeHIqpXn5zoZZ3yt7.3WvxTSa9aTZ0m';
+const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+
+async function saveState() {
+  // Sauvegarde locale immédiate
+  localStorage.setItem('vauche_projects', JSON.stringify(projects));
+  // Sync JSONBin
+  const payload = { projects: {} };
+  projects.forEach(p => {
+    payload.projects[p.id] = { roi: p.roi, feas: p.feas, prio: p.prio, poc: p.poc, total: p.total, matrixX: p.matrixX, matrixY: p.matrixY };
+  });
+  try {
+    await fetch(JSONBIN_URL, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('JSONBin sync failed', e); }
+}
+
+async function loadFromJSONBin() {
+  try {
+    const res = await fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } });
+    const data = await res.json();
+    const saved = data.record?.projects;
+    if (saved && Object.keys(saved).length > 0) {
+      projects = PROJECTS.map(fresh => {
+        const s = saved[fresh.id];
+        if (!s) return { ...fresh };
+        return { ...fresh, roi: s.roi ?? fresh.roi, feas: s.feas ?? fresh.feas, prio: s.prio ?? fresh.prio, poc: s.poc ?? fresh.poc, total: s.total ?? fresh.total, matrixX: s.matrixX, matrixY: s.matrixY };
+      });
+      localStorage.setItem('vauche_projects', JSON.stringify(projects));
+    }
+  } catch(e) { console.warn('JSONBin load failed', e); }
+  renderProjects();
+  renderMatrix();
+  renderSprint();
+}
+
+// Indicateur de sync dans la nav
+(function addSyncIndicator() {
+  const nav = document.querySelector('.nav-actions');
+  if (!nav) return;
+  const dot = document.createElement('div');
+  dot.id = 'syncDot';
+  dot.title = 'Synchronisé avec JSONBin';
+  dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:#5C7A6B;align-self:center;transition:background 0.3s;';
+  nav.prepend(dot);
+})();
+
+// --- NAVIGATION --------------------------------------------------------------
+function showSection(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const map = { intro: 0, projects: 1, matrix: 2 };
+  tabs[map[id]].classList.add('active');
+  if (id === 'matrix') renderMatrix();
+}
+
+// --- PROJECTS RENDER ---------------------------------------------------------
+function filterProjects(dept, btn) {
+  activeFilter = dept;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProjects();
+}
+
+function renderProjects() {
+  const grid = document.getElementById('projectsGrid');
+  const list = activeFilter === 'all' ? projects : projects.filter(p => p.dept === activeFilter);
+  grid.innerHTML = list.map(p => {
+    const dc = DEPT_COLORS[p.dept] || {};
+    return `
+    <div class="project-card" onclick="openModal(${p.id})">
+      <div class="card-accent ${dc.accent || ''}"></div>
+      <div class="card-body">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div class="card-dept ${dc.label || ''}">${p.dept}</div>
+          ${p.quickstart ? `<span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(92,122,107,0.12);color:var(--sage);border:1px solid rgba(92,122,107,0.25);padding:2px 7px;border-radius:4px;">⚡ 9 jours</span>` : ''}
+        </div>
+        <div class="card-title">${p.title}</div>
+        <div class="card-desc">${p.desc.substring(0,110)}...</div>
+        <div class="card-meta">
+          <div class="card-meta-item">
+            <span class="meta-label">POC</span>
+            <span class="meta-value">${p.poc || '-'} j${p.pocOrig ? ` <span style="text-decoration:line-through;font-weight:400;font-size:11px;color:#bbb;">${p.pocOrig}j</span>` : ''}</span>
+          </div>
+          <div class="card-meta-item">
+            <span class="meta-label">Projet total</span>
+            <span class="meta-value">${p.total || '-'} j</span>
+          </div>
+          ${p.toolSaving ? `<div class="card-meta-item"><span class="meta-label">Outils IA</span><span class="meta-value" style="color:var(--sage);font-size:11px;">↓ ${p.toolSaving}</span></div>` : ''}
+        </div>
+        <div class="card-scores">
+          <div class="score-badge">
+            <div class="score-label">ROI</div>
+            <div class="score-stars">${renderStars(p.roi, 'gold')}</div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Faisabilité</div>
+            <div class="score-stars">${renderStars(p.feas, 'sage')}</div>
+          </div>
+          <div class="score-badge">
+            <div class="score-label">Priorité</div>
+            <div class="score-stars">${renderStars(p.prio, 'gold')}</div>
+          </div>
+        </div>
+        ${p.tools && p.tools.length ? `
+        <div class="card-tools">
+          ${p.tools.slice(0,3).map(t => `<span class="card-tool-pill">${t.name}</span>`).join('')}
+          ${p.tools.length > 3 ? `<span class="card-tool-more">+${p.tools.length-3}</span>` : ''}
+        </div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderStars(val, type) {
+  let s = '';
+  for (let i=1;i<=5;i++) s += `<span class="star ${i<=val?'filled '+type:''}"">★</span>`;
+  return s;
+}
+
+// --- MODAL -------------------------------------------------------------------
+function openModal(id) {
+  const p = projects.find(x => x.id === id);
+  editingId = id;
+  const dc = DEPT_COLORS[p.dept] || {};
+  document.getElementById('modalDept').textContent = p.dept;
+  document.getElementById('modalDept').className = 'modal-dept ' + (dc.label || '');
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalDesc').textContent = p.desc;
+  document.getElementById('modalBenefits').innerHTML = p.benefits.map(b => `<li>${b}</li>`).join('');
+  // Tools
+  const toolsEl = document.getElementById('modalTools');
+  if (p.tools && p.tools.length) {
+    toolsEl.innerHTML = p.tools.map(t => {
+      const isCustom = t.badge === 'Sur-mesure' || t.url === '#';
+      return `<div class="tool-item">
+        <span class="tool-badge ${isCustom ? 'custom' : ''}">${t.badge}</span>
+        <div class="tool-content">
+          <div class="tool-name">
+            ${t.name}
+            ${t.url && t.url !== '#' ? `<a class="tool-link" href="${t.url}" target="_blank" rel="noopener">↗ site</a>` : ''}
+          </div>
+          <div class="tool-note">${t.note}</div>
+        </div>
+      </div>`;
+    }).join('');
+    toolsEl.parentElement.style.display = '';
+  } else {
+    toolsEl.parentElement.style.display = 'none';
+  }
+  document.getElementById('inputPOC').value = p.poc || '';
+  document.getElementById('inputTotal').value = p.total || '';
+  document.getElementById('sliderROI').value = p.roi;
+  document.getElementById('sliderFeas').value = p.feas;
+  document.getElementById('sliderPrio').value = p.prio;
+  document.getElementById('roiVal').textContent = p.roi;
+  document.getElementById('feasVal').textContent = p.feas;
+  document.getElementById('prioVal').textContent = p.prio;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+function closeModalOverlay(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function updateSliderVal(id, v) { document.getElementById(id).textContent = v; }
+
+function saveModal() {
+  const p = projects.find(x => x.id === editingId);
+  p.poc = parseInt(document.getElementById('inputPOC').value) || p.poc;
+  p.total = parseInt(document.getElementById('inputTotal').value) || p.total;
+  p.roi = parseInt(document.getElementById('sliderROI').value);
+  p.feas = parseInt(document.getElementById('sliderFeas').value);
+  p.prio = parseInt(document.getElementById('sliderPrio').value);
+  saveState();
+  closeModal();
+  renderProjects();
+  renderMatrix();
+  showToast('ok Use case mis à jour');
+}
+
+// --- MATRIX ------------------------------------------------------------------
+
+// --- ANTI-OVERLAP: force-directed separation, keeps dragged dot fixed --------
+// minDist = minimum distance between dot centers in % of canvas
+// pinnedId = id of the dot currently being dragged (skip moving it)
+function separatePositions(positions, minDist = 9, iterations = 150, pinnedId = null) {
+  const pts = positions.map(p => ({ ...p }));
+  for (let iter = 0; iter < iterations; iter++) {
+    let moved = false;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = pts[j].x - pts[i].x;
+        const dy = pts[j].y - pts[i].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist && dist > 0.001) {
+          const overlap = (minDist - dist) / 2 + 0.1;
+          const nx = (dx / dist) * overlap;
+          const ny = (dy / dist) * overlap;
+          // Pinned dot: don't move it, push the other fully
+          if (pts[i].id === pinnedId) {
+            pts[j].x = Math.max(4, Math.min(96, pts[j].x + nx * 2));
+            pts[j].y = Math.max(4, Math.min(96, pts[j].y + ny * 2));
+          } else if (pts[j].id === pinnedId) {
+            pts[i].x = Math.max(4, Math.min(96, pts[i].x - nx * 2));
+            pts[i].y = Math.max(4, Math.min(96, pts[i].y - ny * 2));
+          } else {
+            pts[i].x = Math.max(4, Math.min(96, pts[i].x - nx));
+            pts[i].y = Math.max(4, Math.min(96, pts[i].y - ny));
+            pts[j].x = Math.max(4, Math.min(96, pts[j].x + nx));
+            pts[j].y = Math.max(4, Math.min(96, pts[j].y + ny));
+          }
+          moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+  return pts;
+}
+
+// Apply separated positions to DOM dots without full re-render (used during drag)
+function applySeparation(pinnedId) {
+  const canvas = document.getElementById('matrixCanvas');
+  const raw = projects.map(p => ({
+    id: p.id,
+    x: p.matrixX !== undefined ? p.matrixX : ((p.feas - 1) / 4 * 80 + 10),
+    y: p.matrixY !== undefined ? p.matrixY : (100 - ((p.roi - 1) / 4 * 80 + 10)),
+  }));
+  const separated = separatePositions(raw, 9, 150, pinnedId);
+  separated.forEach(pos => {
+    const dot = canvas.querySelector(`.dot-wrapper[data-id="${pos.id}"]`);
+    if (!dot) return;
+    if (pos.id === pinnedId) return; // pinned dot already at correct pos
+    dot.style.left = pos.x + '%';
+    dot.style.top  = pos.y + '%';
+    // Keep project store in sync for non-dragged dots
+    const p = projects.find(x => x.id === pos.id);
+    if (p) { p.matrixX = pos.x; p.matrixY = pos.y; }
+  });
+}
+
+function renderMatrix() {
+  const canvas = document.getElementById('matrixCanvas');
+  canvas.querySelectorAll('.dot-wrapper').forEach(d => d.remove());
+
+  const legend = document.getElementById('matrixLegend');
+  const depts = [...new Set(projects.map(p => p.dept))];
+  legend.innerHTML = depts.map(d => {
+    const c = DEPT_COLORS[d] || { color: '#aaa' };
+    return `<div class="legend-item"><div class="legend-dot" style="background:${c.color}"></div>${d}</div>`;
+  }).join('');
+
+  // Build raw positions from saved or score-derived coords
+  const raw = projects.map(p => ({
+    id: p.id,
+    x: p.matrixX !== undefined ? p.matrixX : ((p.feas - 1) / 4 * 80 + 10),
+    y: p.matrixY !== undefined ? p.matrixY : (100 - ((p.roi - 1) / 4 * 80 + 10)),
+  }));
+
+  // Always run separation on initial render
+  const separated = separatePositions(raw, 9, 150);
+
+  // Sync separated coords back into project store
+  separated.forEach(pos => {
+    const p = projects.find(x => x.id === pos.id);
+    if (p) { p.matrixX = pos.x; p.matrixY = pos.y; }
+  });
+
+  separated.forEach(pos => {
+    const p = projects.find(x => x.id === pos.id);
+    const dc = DEPT_COLORS[p.dept] || { color: '#aaa' };
+
+    const dot = document.createElement('div');
+    dot.className = 'dot-wrapper';
+    dot.dataset.id = p.id;
+    dot.style.left = pos.x + '%';
+    dot.style.top  = pos.y + '%';
+
+    dot.innerHTML = `
+      <div class="dot-circle" style="background:${dc.color}">${p.id}</div>
+      <div class="dot-label">${p.title}</div>
+    `;
+
+    makeDraggable(dot, canvas, p);
+    canvas.appendChild(dot);
+  });
+}
+
+function makeDraggable(el, canvas, project) {
+  let isDragging = false;
+  let startX, startY, startLeft, startTop;
+  let rafId = null;
+
+  el.addEventListener('mousedown', e => {
+    isDragging = true;
+    el.classList.add('dragging');
+    startX = e.clientX;
+    startY = e.clientY;
+    startLeft = parseFloat(el.style.left);
+    startTop = parseFloat(el.style.top);
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const rect = canvas.getBoundingClientRect();
+    const dx = (e.clientX - startX) / rect.width * 100;
+    const dy = (e.clientY - startY) / rect.height * 100;
+    const newX = Math.max(3, Math.min(97, startLeft + dx));
+    const newY = Math.max(3, Math.min(97, startTop + dy));
+    el.style.left = newX + '%';
+    el.style.top  = newY + '%';
+    project.matrixX = newX;
+    project.matrixY = newY;
+    project.feas = Math.max(1, Math.min(5, Math.round((newX - 10) / 80 * 4 + 1)));
+    project.roi  = Math.max(1, Math.min(5, Math.round((100 - newY - 10) / 80 * 4 + 1)));
+    // Throttle live separation to rAF
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => applySeparation(project.id));
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    el.classList.remove('dragging');
+    if (rafId) cancelAnimationFrame(rafId);
+    applySeparation(project.id);
+    saveState();
+    renderProjects();
+  });
+
+  // Touch support
+  el.addEventListener('touchstart', e => {
+    isDragging = true;
+    el.classList.add('dragging');
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    startLeft = parseFloat(el.style.left);
+    startTop = parseFloat(el.style.top);
+    e.preventDefault();
+  }, { passive: false });
+
+  document.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const rect = canvas.getBoundingClientRect();
+    const dx = (e.touches[0].clientX - startX) / rect.width * 100;
+    const dy = (e.touches[0].clientY - startY) / rect.height * 100;
+    const newX = Math.max(3, Math.min(97, startLeft + dx));
+    const newY = Math.max(3, Math.min(97, startTop + dy));
+    el.style.left = newX + '%';
+    el.style.top  = newY + '%';
+    project.matrixX = newX;
+    project.matrixY = newY;
+    project.feas = Math.max(1, Math.min(5, Math.round((newX - 10) / 80 * 4 + 1)));
+    project.roi  = Math.max(1, Math.min(5, Math.round((100 - newY - 10) / 80 * 4 + 1)));
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => applySeparation(project.id));
+  }, { passive: false });
+
+  document.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    el.classList.remove('dragging');
+    applySeparation(project.id);
+    saveState();
+    renderProjects();
+  });
+}
+
+// --- TOAST -------------------------------------------------------------------
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// --- PDF EXPORT --------------------------------------------------------------
+async function exportPDF() {
+  showToast('Génération du PDF en cours...');
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const W = 210, H = 297, M = 14, IW = W - M * 2;
+
+  // -- Couleurs calquées sur le CSS du site --
+  const DARK   = [26, 26, 26];
+  const GOLD   = [200, 169, 110];
+  const GOLD_L = [232, 213, 168];
+  const SAGE   = [92, 122, 107];
+  const RUST   = [184, 92, 56];
+  const BLUE   = [30, 58, 95];
+  const PURP   = [155, 107, 155];
+  const BROWN  = [139, 94, 60];
+  const CREAM  = [245, 240, 232];
+  const WHITE  = [255, 255, 255];
+  const G1     = [55, 55, 55];
+  const G2     = [110, 110, 110];
+  const G3     = [180, 175, 168];
+  const BG     = [250, 248, 244];
+  const BORDER = [212, 201, 176];
+
+  const DEPT_COL = {
+    'Comptabilité': GOLD, 'Achats': RUST,
+    'Bureau Projet': BLUE, 'Bureau Études': SAGE,
+    'SAV': PURP, 'Direction': BROWN,
+  };
+  function dCol(d) { return DEPT_COL[d] || G2; }
+
+  // -- État de page --
+  let page = 0, y = 0;
+
+  function newPage(header = true) {
+    if (page > 0) doc.addPage();
+    page++;
+    y = header ? 20 : 0;
+    if (header) {
+      doc.setFillColor(...DARK); doc.rect(0, 0, W, 10, 'F');
+      doc.setFillColor(...GOLD); doc.rect(0, 0, 3, 10, 'F');
+      doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+      doc.setTextColor(...CREAM); doc.text('VAUCHÉ', M + 3, 6.8);
+      doc.setFont('helvetica', 'normal'); doc.setTextColor(...GOLD);
+      doc.text('Feuille de route Intelligence Artificielle', M + 18, 6.8);
+      doc.setTextColor(100, 95, 85);
+      doc.text(new Date().toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' }), W - M, 6.8, { align: 'right' });
+    }
+  }
+
+  function guard(h) { if (y + h > H - 12) newPage(); }
+
+  function hline(col, lw) {
+    doc.setDrawColor(...(col || BORDER)); doc.setLineWidth(lw || 0.25);
+    doc.line(M, y, W - M, y);
+  }
+
+  function footers() {
+    const n = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= n; i++) {
+      doc.setPage(i);
+      doc.setFillColor(...CREAM); doc.rect(0, H - 9, W, 9, 'F');
+      doc.setDrawColor(...BORDER); doc.setLineWidth(0.2); doc.line(0, H - 9, W, H - 9);
+      doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+      doc.text('Esteka Data × Vauché - Confidentiel', M, H - 3.5);
+      doc.text(i + ' / ' + n, W - M, H - 3.5, { align: 'right' });
+    }
+  }
+
+  // ================================================
+  // PAGE 1 - COUVERTURE (fond sombre comme le site)
+  // ================================================
+  newPage(false);
+
+  // Bloc sombre haut
+  doc.setFillColor(...DARK); doc.rect(0, 0, W, 155, 'F');
+  doc.setFillColor(...GOLD); doc.rect(0, 0, 4, 155, 'F');
+
+  // Titre
+  doc.setFontSize(8); doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GOLD);
+  doc.setFillColor(200, 169, 110, 0.15);
+  // Tag "Diagnostic IA"
+  doc.setTextColor(...GOLD);
+  doc.setFontSize(8); doc.setFont('helvetica', 'bold');
+  doc.text('DIAGNOSTIC IA - ESTEKA DATA × VAUCHÉ', M + 8, 40);
+
+  doc.setFontSize(28); doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...CREAM);
+  doc.text('Feuille de route', M + 8, 56);
+  doc.setFontSize(28); doc.setTextColor(...GOLD);
+  doc.text('Intelligence Artificielle', M + 8, 68);
+
+  doc.setFontSize(10); doc.setFont('helvetica', 'normal');
+  doc.setTextColor(160, 150, 135);
+  doc.text('Identification et priorisation des use cases IA pour les équipes Vauché', M + 8, 78);
+
+  // Séparateur doré
+  doc.setDrawColor(...GOLD); doc.setLineWidth(0.5);
+  doc.line(M + 8, 86, W - M, 86);
+
+  // Stats (comme hero-stats du site)
+  const pocTot = projects.reduce((s, p) => s + (p.poc || 0), 0);
+  const qsCount = projects.filter(p => p.quickstart).length;
+  const statsArr = [
+    { v: String(projects.length), l: 'Use cases\nidentifiés' },
+    { v: '5', l: 'Départements\nconcernés' },
+    { v: pocTot + ' j', l: 'Jours POC\nestimés' },
+    { v: String(qsCount), l: 'Projets\n9 jours' },
+  ];
+  statsArr.forEach((s, i) => {
+    const sx = M + 8 + i * 46;
+    doc.setFontSize(26); doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...GOLD); doc.text(s.v, sx, 104);
+    doc.setFontSize(7.5); doc.setFont('helvetica', 'normal');
+    doc.setTextColor(140, 130, 112);
+    s.l.split('\n').forEach((ln, li) => doc.text(ln, sx, 111 + li * 4.5));
+  });
+
+  // Contexte
+  doc.setFontSize(8.5); doc.setFont('helvetica', 'normal');
+  doc.setTextColor(165, 155, 140);
+  const ctxTxt = "Vauché est une entreprise industrielle familiale de 6eme génération, concepteur d'usines de traitement et tri des déchets depuis 40 ans. Installations clé en main avec supervision informatisée. Ce diagnostic IA a été réalisé par Esteka Data dans le cadre du programme IA Booster.";
+  doc.text(doc.splitTextToSize(ctxTxt, IW - 12), M + 8, 130);
+
+  // Bloc creme bas
+  doc.setFillColor(...CREAM); doc.rect(0, 155, W, H - 155, 'F');
+
+  // Chips départements
+  doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('Périmetre analysé', M, 170);
+  const depts = [...new Set(PROJECTS.map(p => p.dept))];
+  let cx = M;
+  depts.forEach(d => {
+    const col = dCol(d);
+    const tw = doc.getTextWidth(d) + 8;
+    doc.setFillColor(...col); doc.roundedRect(cx, 173, tw, 6.5, 1.5, 1.5, 'F');
+    doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255);
+    doc.text(d, cx + 4, 178);
+    cx += tw + 3;
+  });
+
+  // Date
+  doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text(new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }), M, 256);
+  doc.setFontSize(8); doc.setTextColor(...G3);
+  doc.text('Confidentiel - Ne pas diffuser sans autorisation', M, 263);
+
+  // ================================================
+  // PAGE 2 - ANALYSE DE MATURITÉ (comme la section du site)
+  // ================================================
+  newPage(true);
+
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...GOLD); doc.text('ANALYSE DE MATURITÉ IA', M, y); y += 5;
+  doc.setFontSize(18); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('Où en est Vauché ?', M, y); y += 4;
+  hline(GOLD, 0.5); y += 7;
+
+  // Gauge de maturité
+  doc.setFillColor(...WHITE); doc.setDrawColor(...BORDER); doc.setLineWidth(0.3);
+  doc.roundedRect(M, y, IW, 20, 2, 2, 'FD');
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('Niveau de maturité estimé', M + 5, y + 6);
+  doc.setFontSize(11); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('Intermédiaire', M + 5, y + 13);
+  doc.setTextColor(...GOLD); doc.text('- Industrialisable', M + 36, y + 13);
+  // Barre de progression
+  const barX = W - M - 60, barY = y + 8, barW = 55, barH = 4;
+  doc.setFillColor(212, 201, 176); doc.roundedRect(barX, barY, barW, barH, 2, 2, 'F');
+  doc.setFillColor(...SAGE);
+  doc.roundedRect(barX, barY, barW * 0.30, barH, 2, 2, 'F');
+  doc.setFillColor(...GOLD);
+  doc.roundedRect(barX + barW * 0.30, barY, barW * 0.28, barH, 0, 0, 'F');
+  doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(...GOLD);
+  doc.text('58%', barX + barW + 3, barY + 3.5);
+  y += 25;
+
+  // 3 colonnes : Atouts / Freins / Déjà automatisé
+  const cols3W = (IW - 8) / 3;
+  const col3Data = [
+    {
+      icon: '[+]', title: 'Atouts', col: SAGE,
+      items: ['Données historiques riches (devis, projets, SAV)', 'ERP Everwin en place, données structurées', 'Équipes expertes avec processus documentés', 'Direction impliquée et volonté d\'innover', 'Répétitivité élevée = fort potentiel IA'],
+    },
+    {
+      icon: '[!]', title: 'Freins identifiés', col: RUST,
+      items: ['Données dispersées (ERP + LSE + Excel + BDD)', 'Pas de connexion entre les systemes', 'Culture "papier" encore présente', 'Crainte de perdre le contrôle métier', 'Pas de référent data / IA en interne'],
+    },
+    {
+      icon: '[v]', title: 'Déjà automatisé', col: GOLD,
+      items: ['Supervision informatisée des installations', 'ERP Everwin pour la gestion projet', 'Facturation électronique via Korus', 'Modeles paramétriques dans SolidWorks', 'Suivi Excel structuré pour les achats'],
+    },
+  ];
+
+    // Dynamic col height based on content
+  const col3H = 72;
+  col3Data.forEach((col, ci) => {
+    const cx2 = M + ci * (cols3W + 4);
+    doc.setFillColor(...(ci === 0 ? [235, 245, 240] : ci === 1 ? [248, 238, 234] : [252, 248, 238]));
+    doc.setDrawColor(...col.col); doc.setLineWidth(0.3);
+    doc.roundedRect(cx2, y, cols3W, col3H, 2, 2, 'FD');
+    doc.setFillColor(...col.col); doc.roundedRect(cx2, y, 2.5, col3H, 1, 1, 'F');
+
+    doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...col.col);
+    doc.text(col.title, cx2 + 6, y + 8);
+    doc.setDrawColor(...col.col); doc.setLineWidth(0.15);
+    doc.line(cx2 + 5, y + 11, cx2 + cols3W - 3, y + 11);
+
+    doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G1);
+    let itemY = y + 17;
+    col.items.forEach((item) => {
+      const cleanItem = '- ' + item;
+      const wrapped = doc.splitTextToSize(cleanItem, cols3W - 10);
+      doc.text(wrapped, cx2 + 6, itemY);
+      itemY += wrapped.length * 4 + 2;
+    });
+  });
+  y += col3H + 8;
+
+  // -- Idées reçues --
+  doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...G3);
+  doc.text('LES IDÉES REÇUES À DÉCONSTRUIRE', M, y); y += 6;
+
+  const idees = [
+    { icon: '[!]', title: '"Un projet IA, ça prend une journée"', col: RUST,
+      txt: 'Un POC bien fait demande 3 à 25 jours selon la complexité. Le déploiement production prend 2 à 4× plus. Vouloir aller trop vite = résultats décevants et abandon.' },
+    { icon: '[?]', title: '"L\'IA peut tout faire toute seule"', col: RUST,
+      txt: 'L\'IA excelle sur les tâches répétitives et bien délimitées. Pour les cas complexes, elle assiste - elle ne décide pas seule. L\'humain reste au centre pour les exceptions.' },
+    { icon: '[=]', title: '"Nos données ne sont pas assez propres"', col: GOLD,
+      txt: 'Frein réel mais pas bloquant. On ne nettoie pas tout avant : on nettoie ce dont le projet a besoin. Les premiers POC permettent d\'identifier les vrais problemes.' },
+    { icon: '[o]', title: '"L\'IA va remplacer nos équipes"', col: GOLD,
+      txt: 'Dans un contexte industriel B2B comme Vauché, l\'IA libere du temps sur les tâches sans valeur ajoutée pour se concentrer sur l\'expertise technique et la relation client.' },
+  ];
+
+  const ideeCardH = 30;
+  idees.forEach((id, ii) => {
+    const ix = M + (ii % 2) * (IW / 2 + 2);
+    if (ii % 2 === 0) guard(ideeCardH + 4);
+    const iy = y + Math.floor(ii / 2) * (ideeCardH + 4);
+    doc.setFillColor(...WHITE); doc.setDrawColor(...BORDER); doc.setLineWidth(0.25);
+    doc.roundedRect(ix, iy, IW / 2 - 2, ideeCardH, 2, 2, 'FD');
+    doc.setFillColor(...id.col); doc.roundedRect(ix, iy, 2.5, ideeCardH, 1, 1, 'F');
+    doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...id.col);
+    const titleLines = doc.splitTextToSize(id.title, IW / 2 - 14);
+    doc.text(titleLines, ix + 6, iy + 7);
+    const titleH = titleLines.length * 4.5;
+    doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+    const txtLines = doc.splitTextToSize(id.txt, IW / 2 - 12);
+    doc.text(txtLines.slice(0, 4), ix + 6, iy + 8 + titleH);
+  });
+  y += 2 * (ideeCardH + 4) + 4;
+
+  // ================================================
+  // PAGE 3 - SPRINT 9 JOURS
+  // ================================================
+  newPage(true);
+
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...GOLD);
+  doc.text('SPRINT DE DÉMARRAGE', M, y); y += 5;
+  doc.setFontSize(18); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('3 projets à lancer dans les 9 jours restants', M, y); y += 4;
+  hline(GOLD, 0.5); y += 6;
+  doc.setFontSize(8.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('Sélectionnés pour leur rapport effort/valeur - outillage SaaS disponible, données accessibles.', M, y); y += 10;
+
+  const sprintProjs = typeof getSprintProjects === 'function' ? getSprintProjects() : projects.filter(p => p.quickstart).slice(0, 3);
+  const sprintCols = [GOLD, SAGE, BLUE];
+  const sprintWeeks = ['Semaine 1 - Jours 1 à 3', 'Semaine 1 - Jours 4 à 6', 'Semaine 2 - Jours 7 à 9'];
+  const cardW = (IW - 8) / 3;
+
+  sprintProjs.forEach((p, i) => {
+    guard(80);
+    const sc = sprintCols[i] || DARK;
+    const dc2 = dCol(p.dept);
+    const cx3 = M + i * (cardW + 4);
+
+    // Card fond sombre (comme le site)
+    doc.setFillColor(...DARK); doc.roundedRect(cx3, y, cardW, 78, 2, 2, 'F');
+    // Stripe top colorée
+    doc.setFillColor(...sc); doc.roundedRect(cx3, y, cardW, 4, 2, 2, 'F');
+    doc.rect(cx3, y + 2, cardW, 2, 'F');
+
+    // Week label
+    doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...sc);
+    doc.text(sprintWeeks[i], cx3 + 4, y + 11);
+
+    // Title
+    doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(245, 242, 235);
+    const shortT = p.title.length > 26 ? p.title.substring(0, 24) + '...' : p.title;
+    doc.text(shortT, cx3 + 4, y + 20);
+
+    // Dept chip
+    const dw = doc.getTextWidth(p.dept) + 6;
+    doc.setFillColor(...dc2); doc.roundedRect(cx3 + 4, y + 23, dw, 5.5, 1.2, 1.2, 'F');
+    doc.setFontSize(6.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255);
+    doc.text(p.dept, cx3 + 7, y + 27.5);
+
+    // Description
+    doc.setFontSize(7.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(170, 162, 148);
+    const descLines = doc.splitTextToSize(p.desc, cardW - 8);
+    doc.text(descLines.slice(0, 3), cx3 + 4, y + 34);
+
+    // Bénéfices
+    if (p.benefits && p.benefits.length) {
+      doc.setFontSize(7); doc.setTextColor(...sc);
+      p.benefits.slice(0, 2).forEach((b, bi) => {
+        doc.text('-> ' + b, cx3 + 4, y + 55 + bi * 5, { maxWidth: cardW - 8 });
+      });
+    }
+
+    // POC badge
+    doc.setFillColor(...sc); doc.roundedRect(cx3 + cardW - 22, y + 8, 20, 8, 1.5, 1.5, 'F');
+    doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(255, 255, 255);
+    doc.text((p.poc || 3) + ' j POC', cx3 + cardW - 21, y + 13.5);
+
+    // Tools
+    if (p.tools && p.tools.length) {
+      doc.setFontSize(6.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(120, 112, 98);
+      doc.text('' + p.tools.slice(0, 2).map(t => t.name).join(', '), cx3 + 4, y + 72);
+    }
+  });
+  y += 84;
+
+  // Timeline 9 jours
+  guard(32);
+  doc.setFillColor(40, 40, 40); doc.roundedRect(M, y, IW, 26, 2, 2, 'F');
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...G3);
+  doc.text('PLANNING 9 JOURS', M + 5, y + 6);
+  // Days
+  const dayColors = [...Array(3).fill(GOLD), ...Array(3).fill(SAGE), ...Array(3).fill(BLUE)];
+  const dayNames = sprintProjs.flatMap((p, i) => Array(3).fill(p.title.split(' ').slice(0, 2).join(' ')));
+  const stepW = IW / 9;
+  dayColors.forEach((dc3, di) => {
+    const dx = M + di * stepW + stepW / 2;
+    doc.setFillColor(30, 30, 30); doc.setDrawColor(...dc3); doc.setLineWidth(1);
+    doc.circle(dx, y + 15, 4, 'FD');
+    doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...dc3);
+    doc.text(String(di + 1), dx - (di < 9 ? 1.5 : 2.5), y + 16.8);
+  });
+  y += 32;
+
+  // ================================================
+  // PAGE 4 - TABLEAU SYNTHÈSE
+  // ================================================
+  newPage(true);
+
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...GOLD);
+  doc.text('CATALOGUE COMPLET', M, y); y += 5;
+  doc.setFontSize(18); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('Synthese de priorisation', M, y); y += 4;
+  hline(GOLD, 0.5); y += 6;
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('21 use cases classés par score combiné · barres : or = ROI  vert = Faisabilité  rouge = Priorité', M, y); y += 8;
+
+  // Header table
+  doc.setFillColor(...DARK); doc.rect(M, y, IW, 8, 'F');
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...CREAM);
+  doc.text('#',      M + 2,   y + 5.3);
+  doc.text('Dept',   M + 8,   y + 5.3);
+  doc.text('Use Case', M + 35, y + 5.3);
+  doc.text('ROI',    M + 97,  y + 5.3);
+  doc.text('Faisab.', M + 114, y + 5.3);
+  doc.text('Prio.',  M + 131, y + 5.3);
+  doc.text('POC',    M + 149, y + 5.3);
+  doc.text('Total',  M + 160, y + 5.3);
+  y += 8;
+
+  const sorted = [...projects].sort((a, b) => (b.roi + b.feas + b.prio) - (a.roi + a.feas + a.prio));
+  const bw = 2.4, bh = 2.6, bg = 0.6;
+
+  sorted.forEach((p, i) => {
+    guard(8);
+    doc.setFillColor(...(i % 2 === 0 ? BG : WHITE)); doc.rect(M, y, IW, 8, 'F');
+
+    // Dept dot
+    doc.setFillColor(...dCol(p.dept)); doc.circle(M + 4.5, y + 4, 2, 'F');
+
+    doc.setFontSize(7); doc.setFont('helvetica', p.quickstart ? 'bold' : 'normal');
+    doc.setTextColor(...DARK);
+    doc.text(String(p.id), M + 2, y + 5);
+    doc.text(p.dept.substring(0, 11), M + 8, y + 5);
+    const t = p.title.length > 29 ? p.title.substring(0, 27) + '..' : p.title;
+    doc.text(t, M + 35, y + 5);
+
+    // Score bars
+    const drawB = (sx, val, col) => {
+      for (let s = 1; s <= 5; s++) {
+        doc.setFillColor(...(s <= val ? col : [215, 210, 202]));
+        doc.roundedRect(sx + (s - 1) * (bw + bg), y + 2.6, bw, bh, 0.4, 0.4, 'F');
+      }
+    };
+    drawB(M + 97,  p.roi,  GOLD);
+    drawB(M + 114, p.feas, SAGE);
+    drawB(M + 131, p.prio, RUST);
+
+    doc.setFont('helvetica', 'normal'); doc.setTextColor(...G1);
+    doc.text((p.poc || '-') + ' j',   M + 149, y + 5);
+    doc.text((p.total || '-') + ' j', M + 160, y + 5);
+
+    // 9j badge
+    if (p.quickstart) {
+      doc.setFillColor(...SAGE); doc.roundedRect(M + IW - 13, y + 1.8, 12, 4.5, 1, 1, 'F');
+      doc.setFontSize(5.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...WHITE);
+      doc.text('9 jours', M + IW - 12, y + 5);
+    }
+    y += 8;
+  });
+
+  // Totals bar
+  y += 2; guard(10);
+  doc.setFillColor(...GOLD); doc.rect(M, y, IW, 9, 'F');
+  doc.setFontSize(8); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('TOTAUX', M + 4, y + 6);
+  const pocSum2 = projects.reduce((s, p) => s + (p.poc || 0), 0);
+  const totSum2 = projects.reduce((s, p) => s + (p.total || 0), 0);
+  doc.text('POC : ' + pocSum2 + ' j', M + 125, y + 6);
+  doc.text('Projet : ' + totSum2 + ' j', M + 150, y + 6);
+  y += 14;
+
+
+  // ================================================
+  // PAGE MATRICE ROI x FAISABILITE
+  // ================================================
+  newPage(true);
+
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...GOLD);
+  doc.text('PRIORISATION VISUELLE', M, y); y += 5;
+  doc.setFontSize(18); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+  doc.text('Matrice ROI x Faisabilite', M, y); y += 4;
+  hline(GOLD, 0.5); y += 6;
+  doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('Chaque projet positionne selon son ROI potentiel (vertical) et sa faisabilite technique (horizontal)', M, y); y += 10;
+
+  // Draw matrix grid
+  const matW = IW, matH = 130;
+  const matX = M, matY = y;
+
+  // Quadrant backgrounds
+  doc.setFillColor(235, 245, 240); doc.rect(matX, matY, matW/2, matH/2, 'F');           // TL: Quick wins
+  doc.setFillColor(252, 248, 238); doc.rect(matX + matW/2, matY, matW/2, matH/2, 'F'); // TR: Prioritaires
+  doc.setFillColor(248, 248, 248); doc.rect(matX, matY + matH/2, matW/2, matH/2, 'F'); // BL: A reconsiderer
+  doc.setFillColor(252, 242, 238); doc.rect(matX + matW/2, matY + matH/2, matW/2, matH/2, 'F'); // BR: Projets lourds
+
+  // Grid border + dividers
+  doc.setDrawColor(...BORDER); doc.setLineWidth(0.3);
+  doc.rect(matX, matY, matW, matH);
+  doc.setLineWidth(0.2);
+  doc.line(matX + matW/2, matY, matX + matW/2, matY + matH);
+  doc.line(matX, matY + matH/2, matX + matW, matY + matH/2);
+
+  // Quadrant labels
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold');
+  doc.setTextColor(...SAGE);   doc.text('Quick Wins', matX + 4, matY + 7);
+  doc.setTextColor(...GOLD);   doc.text('Prioritaires', matX + matW/2 + 4, matY + 7);
+  doc.setTextColor(170,170,170); doc.text('A reconsiderer', matX + 4, matY + matH/2 + 7);
+  doc.setTextColor(...RUST);   doc.text('Projets lourds', matX + matW/2 + 4, matY + matH/2 + 7);
+
+  // Axis labels
+  doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('Faisabilite technique ->', matX + matW/2 - 20, matY + matH + 6);
+  // Vertical axis label (no save/restore - use rotated text trick)
+  doc.setFontSize(6); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+  doc.text('ROI', matX - 2, matY + matH/2 + 2, { angle: 90 });
+
+  // Compute raw positions from scores (feas=x, roi=y)
+  const pad = 10;
+  const matPts = projects.map(function(proj) {
+    const feas = Math.max(1, Math.min(5, proj.feas || 3));
+    const roi  = Math.max(1, Math.min(5, proj.roi  || 3));
+    return {
+      id: proj.id, dept: proj.dept,
+      x: matX + pad + ((feas - 1) / 4) * (matW - pad * 2),
+      y: matY + pad + (1 - (roi - 1) / 4) * (matH - pad * 2)
+    };
+  });
+
+  // Jitter identical points before separation so algo can push them apart
+  const seen = {};
+  matPts.forEach(function(pt) {
+    const key = Math.round(pt.x) + '_' + Math.round(pt.y);
+    seen[key] = (seen[key] || 0) + 1;
+    if (seen[key] > 1) {
+      const angle = (seen[key] - 1) * (Math.PI * 2 / 8);
+      pt.x += Math.cos(angle) * 0.5;
+      pt.y += Math.sin(angle) * 0.5;
+    }
+  });
+
+  // Force-separate: push apart points closer than minDist
+  const minDist = 10;
+  const xMin = matX + 6, xMax = matX + matW - 6;
+  const yMin = matY + 6, yMax = matY + matH - 6;
+  for (let iter = 0; iter < 200; iter++) {
+    let moved = false;
+    for (let i = 0; i < matPts.length; i++) {
+      for (let j = i + 1; j < matPts.length; j++) {
+        const dx = matPts[j].x - matPts[i].x;
+        const dy = matPts[j].y - matPts[i].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist && dist > 0.0001) {
+          const push = (minDist - dist) / 2 + 0.1;
+          const nx = dx / dist * push;
+          const ny = dy / dist * push;
+          matPts[i].x -= nx; matPts[i].y -= ny;
+          matPts[j].x += nx; matPts[j].y += ny;
+          // Clamp to matrix bounds
+          matPts[i].x = Math.max(xMin, Math.min(xMax, matPts[i].x));
+          matPts[i].y = Math.max(yMin, Math.min(yMax, matPts[i].y));
+          matPts[j].x = Math.max(xMin, Math.min(xMax, matPts[j].x));
+          matPts[j].y = Math.max(yMin, Math.min(yMax, matPts[j].y));
+          moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+
+  // Draw all 21 points
+  matPts.forEach(function(pt) {
+    const col = dCol(pt.dept);
+    doc.setFillColor(...col);
+    doc.circle(pt.x, pt.y, 4.5, 'F');
+    doc.setFontSize(6); doc.setFont('helvetica', 'bold');
+    doc.setTextColor(255, 255, 255);
+    doc.text(String(pt.id), pt.x - (pt.id >= 10 ? 2.8 : 1.4), pt.y + 2);
+  });
+
+  // Legend
+  y = matY + matH + 12;
+  doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...G2);
+  doc.text('Departements :', M, y);
+  let legX = M + 26;
+  const deptsDone = new Set();
+  projects.forEach(proj => {
+    if (deptsDone.has(proj.dept)) return;
+    deptsDone.add(proj.dept);
+    const col = dCol(proj.dept);
+    doc.setFillColor(...col); doc.circle(legX, y - 1, 2.5, 'F');
+    doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G1);
+    doc.text(proj.dept, legX + 4, y);
+    legX += doc.getTextWidth(proj.dept) + 12;
+    if (legX > W - M - 30) { legX = M + 26; y += 7; }
+  });
+  y += 10;
+
+  // ================================================
+  // PAGES FICHES PAR DÉPARTEMENT
+  // ================================================
+  const deptGroups = [...new Set(projects.map(p => p.dept))];
+
+  deptGroups.forEach(dept => {
+    const dp = projects.filter(p => p.dept === dept);
+    const dc3 = dCol(dept);
+    newPage(true);
+
+    // Header département (comme les cards du site)
+    doc.setFillColor(...dc3); doc.rect(M, y, IW, 12, 'F');
+    doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.setTextColor(...WHITE);
+    doc.text(dept, M + 5, y + 8.5);
+    doc.setFontSize(8.5); doc.setFont('helvetica', 'normal');
+    doc.text(dp.length + ' use case' + (dp.length > 1 ? 's' : ''), W - M - 4, y + 8.5, { align: 'right' });
+    y += 17;
+
+    dp.forEach(p => {
+      const descLines = doc.splitTextToSize(p.desc, IW - 12);
+      const nDesc = Math.min(descLines.length, 3);
+      const benefLines = p.benefits ? p.benefits.slice(0, 3) : [];
+      const toolLine = p.tools ? p.tools.slice(0, 3).map(t => t.name).join(' · ') : '';
+      const cardH = 14 + nDesc * 4.8 + benefLines.length * 5 + (toolLine ? 7 : 0) + 20;
+      guard(cardH + 5);
+
+      // Card (comme project-card du site : fond clair, bordure, accent gauche)
+      doc.setFillColor(...BG); doc.setDrawColor(...BORDER); doc.setLineWidth(0.2);
+      doc.roundedRect(M, y, IW, cardH, 2, 2, 'FD');
+      doc.setFillColor(...dc3); doc.roundedRect(M, y, 3.5, cardH, 1, 1, 'F');
+
+      // ID badge
+      doc.setFillColor(...dc3); doc.roundedRect(M + 6, y + 3.5, 8, 6, 1.5, 1.5, 'F');
+      doc.setFontSize(7.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...WHITE);
+      doc.text(String(p.id), M + 8.2, y + 8.2);
+
+      // Title + badge 9j
+      doc.setFontSize(10.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...DARK);
+      doc.text(p.title, M + 18, y + 9);
+      if (p.quickstart) {
+        const tw2 = doc.getTextWidth(p.title);
+        doc.setFillColor(...SAGE); doc.roundedRect(M + 20 + tw2, y + 4.5, 14, 5, 1.2, 1.2, 'F');
+        doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...WHITE);
+        doc.text('9 jours', M + 21.5 + tw2, y + 8.5);
+      }
+
+      // Separator
+      doc.setDrawColor(...BORDER); doc.setLineWidth(0.15);
+      doc.line(M + 5, y + 13, M + IW - 4, y + 13);
+
+      // Description
+      doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G1);
+      doc.text(descLines.slice(0, nDesc), M + 6, y + 18);
+
+      let rowY = y + 14 + nDesc * 4.8 + 4;
+
+      // Bénéfices
+      if (benefLines.length) {
+        doc.setFontSize(7); doc.setFont('helvetica', 'bold'); doc.setTextColor(...dc3);
+        doc.text('Bénéfices', M + 6, rowY); rowY += 5;
+        doc.setFont('helvetica', 'normal'); doc.setTextColor(...G2);
+        benefLines.forEach(b => {
+          doc.text('-> ' + b, M + 8, rowY, { maxWidth: IW / 2 }); rowY += 4.5;
+        });
+      }
+
+      // Metrics strip (comme card-meta du site)
+      const myY = y + cardH - 10;
+      const mItems = [
+        { l: 'POC',     v: (p.poc || '-') + ' j',   c: dc3 },
+        { l: 'Projet',  v: (p.total || '-') + ' j',  c: G2  },
+        { l: 'ROI',     v: p.roi,   c: GOLD, bar: true },
+        { l: 'Faisab.', v: p.feas,  c: SAGE, bar: true },
+        { l: 'Prio.',   v: p.prio,  c: RUST, bar: true },
+      ];
+      if (p.toolSaving) mItems.push({ l: 'Eco.', v: p.toolSaving.split(' ')[0] + ' j eco.', c: SAGE });
+
+      let mx = M + 6;
+      mItems.forEach(m => {
+        doc.setFontSize(5.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G3);
+        doc.text(m.l, mx, myY);
+        if (m.bar) {
+          const bw3 = 2.8, bg3 = 0.5;
+          for (let s = 1; s <= 5; s++) {
+            doc.setFillColor(...(s <= m.v ? m.c : [215, 210, 202]));
+            doc.roundedRect(mx + (s - 1) * (bw3 + bg3), myY + 1.5, bw3, 2.5, 0.4, 0.4, 'F');
+          }
+          mx += 5 * (bw3 + bg3) + 6;
+        } else {
+          doc.setFontSize(8.5); doc.setFont('helvetica', 'bold'); doc.setTextColor(...m.c);
+          doc.text(String(m.v), mx, myY + 6);
+          mx += doc.getTextWidth(String(m.v)) + 8;
+        }
+      });
+
+      // Tools (above metrics strip)
+      if (toolLine) {
+        doc.setFontSize(6.5); doc.setFont('helvetica', 'normal'); doc.setTextColor(...G3);
+        doc.text('Outils: ' + toolLine, M + 6, y + cardH - 14);
+      }
+
+      y += cardH + 5;
+    });
+  });
+
+  footers();
+  doc.save('Vauche_Feuille_de_Route_IA_' + new Date().toISOString().slice(0, 10) + '.pdf');
+  showToast('PDF téléchargé !');
+}
+
+function resetMatrixPositions() {
+  projects.forEach(p => { delete p.matrixX; delete p.matrixY; });
+  saveState();
+  renderMatrix();
+  showToast('ok Matrice réorganisée automatiquement');
+}
+
+// --- INIT --------------------------------------------------------------------
+// Charge depuis JSONBin (source de vérité partagée)
+loadFromJSONBin();
+
+// --- SPRINT 9 JOURS ---------------------------------------------------------
+var SLOT_COLORS = [
+  { border:'rgba(200,169,110,0.35)', accent:'linear-gradient(90deg,#C8A96E,#E8D5A8)', label:'#C8A96E', dayColor:'#C8A96E', week:'Semaine 1 - Jour 1->3' },
+  { border:'rgba(92,122,107,0.35)',  accent:'linear-gradient(90deg,#5C7A6B,#8aad9c)', label:'#8aad9c', dayColor:'#8aad9c', week:'Semaine 1 - Jour 4->6' },
+  { border:'rgba(58,108,168,0.35)',  accent:'linear-gradient(90deg,#1E3A5F,#3a6ca8)', label:'#6a9fd8', dayColor:'#6a9fd8', week:'Semaine 2 - Jour 7->9'  },
+];
+
+var sprintIds = JSON.parse(localStorage.getItem('vauche_sprint') || '[10,15,8]');
+var currentPickerSlot = 0;
+
+function saveSprint() {
+  localStorage.setItem('vauche_sprint', JSON.stringify(sprintIds));
+}
+
+function getSprintProjects() {
+  return sprintIds.map(function(id) {
+    return PROJECTS.find(function(p) { return p.id === id; });
+  }).filter(Boolean);
+}
+
+function renderSprint() {
+  var cards = document.getElementById('sprintCards');
+  var timeline = document.getElementById('sprintTimeline');
+  if (!cards) return;
+
+  cards.innerHTML = '';
+  var sprints = getSprintProjects();
+
+  sprints.forEach(function(p, i) {
+    var c = SLOT_COLORS[i];
+    var dc = DEPT_COLORS[p.dept] || {};
+
+    var card = document.createElement('div');
+    card.setAttribute('style', 'background:rgba(245,240,232,0.04);border:1px solid ' + c.border + ';border-radius:14px;overflow:hidden;display:flex;flex-direction:column;');
+
+    var stripe = document.createElement('div');
+    stripe.setAttribute('style', 'height:4px;background:' + c.accent + ';');
+    card.appendChild(stripe);
+
+    var body = document.createElement('div');
+    body.setAttribute('style', 'padding:20px;flex:1;display:flex;flex-direction:column;');
+
+    var wk = document.createElement('div');
+    wk.setAttribute('style', 'font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:' + c.label + ';margin-bottom:6px;');
+    wk.textContent = c.week;
+    body.appendChild(wk);
+
+    var ttl = document.createElement('div');
+    ttl.setAttribute('style', 'font-size:15px;font-weight:600;color:#F5F0E8;margin-bottom:6px;line-height:1.3;');
+    ttl.textContent = p.title.length > 28 ? p.title.substring(0,26) + '...' : p.title;
+    body.appendChild(ttl);
+
+    var dpt = document.createElement('div');
+    dpt.setAttribute('style', 'font-size:10px;font-weight:600;color:rgba(245,240,232,0.35);margin-bottom:10px;text-transform:uppercase;');
+    dpt.textContent = p.dept;
+    body.appendChild(dpt);
+
+    var dsc = document.createElement('p');
+    dsc.setAttribute('style', 'font-size:11px;color:rgba(245,240,232,0.45);line-height:1.6;margin-bottom:14px;flex:1;');
+    dsc.textContent = p.desc.substring(0,120) + '...';
+    body.appendChild(dsc);
+
+    var tags = document.createElement('div');
+    tags.setAttribute('style', 'display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;');
+    var pocTag = document.createElement('span');
+    pocTag.setAttribute('style', 'font-size:10px;padding:3px 9px;border-radius:100px;background:rgba(92,122,107,0.15);color:#8aad9c;border:1px solid rgba(92,122,107,0.25);');
+    pocTag.textContent = (p.poc || 3) + ' j POC';
+    tags.appendChild(pocTag);
+    body.appendChild(tags);
+
+    var btn = document.createElement('button');
+    btn.setAttribute('style', 'width:100%;padding:9px;background:transparent;border:1px solid ' + c.border + ';border-radius:8px;color:' + c.label + ';font-size:12px;font-weight:600;cursor:pointer;');
+    btn.textContent = '<-> Changer ce projet';
+    (function(idx) {
+      btn.addEventListener('click', function() {
+        openPicker(idx);
+      });
+    })(i);
+    body.appendChild(btn);
+
+    card.appendChild(body);
+    cards.appendChild(card);
+  });
+
+  // Timeline
+  if (timeline) {
+    timeline.innerHTML = '<div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-bottom:16px;">Planning 9 jours</div>';
+    var row = document.createElement('div');
+    row.setAttribute('style', 'display:flex;gap:0;position:relative;');
+    var line = document.createElement('div');
+    line.setAttribute('style', 'position:absolute;top:18px;left:0;right:0;height:2px;background:rgba(245,240,232,0.08);');
+    row.appendChild(line);
+    var sp = getSprintProjects();
+    var names = [];
+    var cols = [];
+    for (var s = 0; s < 3; s++) {
+      var nm = sp[s] ? sp[s].title.split(' ').slice(0,2).join(' ') : 'Projet ' + (s+1);
+      for (var d = 0; d < 3; d++) { names.push(nm); cols.push(SLOT_COLORS[s].dayColor); }
+    }
+    for (var i = 0; i < 9; i++) {
+      var wrap = document.createElement('div');
+      wrap.setAttribute('style', 'flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;');
+      var circle = document.createElement('div');
+      circle.setAttribute('style', 'width:34px;height:34px;border-radius:50%;background:rgba(26,26,26,0.9);border:2px solid ' + cols[i] + ';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:' + cols[i] + ';');
+      circle.textContent = String(i + 1);
+      var lbl = document.createElement('div');
+      lbl.setAttribute('style', 'font-size:8px;font-weight:600;color:rgba(245,240,232,0.35);text-align:center;max-width:50px;overflow:hidden;');
+      lbl.textContent = names[i];
+      wrap.appendChild(circle);
+      wrap.appendChild(lbl);
+      row.appendChild(wrap);
+    }
+    timeline.appendChild(row);
+  }
+}
+
+function openPicker(slotIndex) {
+  currentPickerSlot = slotIndex;
+  document.getElementById('pickerSlotLabel').textContent = slotIndex + 1;
+  document.getElementById('pickerSearch').value = '';
+  document.getElementById('pickerOverlay').style.display = 'flex';
+  renderPickerList('');
+  setTimeout(function() {
+    var s = document.getElementById('pickerSearch');
+    if (s) s.focus();
+  }, 100);
+}
+
+function closePicker() {
+  document.getElementById('pickerOverlay').style.display = 'none';
+}
+
+function closePickerOverlay(e) {
+  if (e.target === document.getElementById('pickerOverlay')) closePicker();
+}
+
+function filterPicker(val) {
+  renderPickerList(val.toLowerCase());
+}
+
+function renderPickerList(query) {
+  var list = document.getElementById('pickerList');
+  if (!list) return;
+  list.innerHTML = '';
+
+  var filtered = PROJECTS.filter(function(p) {
+    if (!query) return true;
+    return p.title.toLowerCase().indexOf(query) >= 0 || p.dept.toLowerCase().indexOf(query) >= 0;
+  });
+
+  filtered.forEach(function(p) {
+    var isSelected = sprintIds[currentPickerSlot] === p.id;
+    var isUsed = sprintIds.indexOf(p.id) >= 0 && !isSelected;
+    var dc = DEPT_COLORS[p.dept] || { color: '#aaa' };
+
+    var div = document.createElement('div');
+    div.setAttribute('style',
+      'display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;margin-bottom:6px;' +
+      'border:1px solid ' + (isSelected ? 'rgba(200,169,110,0.4)' : 'rgba(245,240,232,0.06)') + ';' +
+      'background:' + (isSelected ? 'rgba(200,169,110,0.08)' : 'rgba(245,240,232,0.03)') + ';' +
+      'opacity:' + (isUsed ? '0.4' : '1') + ';' +
+      'cursor:' + (isUsed ? 'not-allowed' : 'pointer') + ';'
+    );
+
+    var dot = document.createElement('div');
+    dot.setAttribute('style', 'width:30px;height:30px;border-radius:50%;background:' + dc.color + ';display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;flex-shrink:0;');
+    dot.textContent = String(p.id);
+    div.appendChild(dot);
+
+    var info = document.createElement('div');
+    info.setAttribute('style', 'flex:1;');
+
+    var row1 = document.createElement('div');
+    row1.setAttribute('style', 'display:flex;align-items:center;gap:8px;margin-bottom:3px;');
+    var tspan = document.createElement('span');
+    tspan.setAttribute('style', 'font-size:13px;font-weight:600;color:#F5F0E8;');
+    tspan.textContent = p.title;
+    row1.appendChild(tspan);
+    if (isSelected) {
+      var badge = document.createElement('span');
+      badge.setAttribute('style', 'font-size:9px;padding:2px 6px;border-radius:4px;background:rgba(200,169,110,0.2);color:#C8A96E;font-weight:700;');
+      badge.textContent = 'ACTUEL';
+      row1.appendChild(badge);
+    }
+    if (isUsed) {
+      var ubadge = document.createElement('span');
+      ubadge.setAttribute('style', 'font-size:9px;color:rgba(245,240,232,0.4);');
+      ubadge.textContent = 'déjà dans le sprint';
+      row1.appendChild(ubadge);
+    }
+    info.appendChild(row1);
+
+    var row2 = document.createElement('div');
+    row2.setAttribute('style', 'display:flex;align-items:center;gap:8px;');
+    var dspan = document.createElement('span');
+    dspan.setAttribute('style', 'font-size:10px;color:rgba(245,240,232,0.3);');
+    dspan.textContent = p.dept;
+    var pocspan = document.createElement('span');
+    pocspan.setAttribute('style', 'font-size:10px;color:#8aad9c;');
+    pocspan.textContent = (p.poc || '?') + ' j POC';
+    row2.appendChild(dspan);
+    row2.appendChild(pocspan);
+    info.appendChild(row2);
+
+    div.appendChild(info);
+
+    if (!isUsed) {
+      (function(pid) {
+        div.addEventListener('click', function() {
+          selectProject(pid);
+        });
+      })(p.id);
+    }
+
+    list.appendChild(div);
+  });
+}
+
+function selectProject(id) {
+  sprintIds[currentPickerSlot] = id;
+  saveSprint();
+  closePicker();
+  renderSprint();
+  showToast('Slot ' + (currentPickerSlot + 1) + ' mis a jour');
+}
+
+// renderSprint() est appelé dans loadFromJSONBin()
+</script>
+
+
+<!-- PICKER MODAL -->
+    <div id="pickerOverlay" style="display:none; position:fixed; inset:0; z-index:300; background:rgba(10,10,10,0.7); backdrop-filter:blur(6px); align-items:center; justify-content:center;" onclick="closePickerOverlay(event)">
+      <div style="background:var(--dark); border:1px solid rgba(245,240,232,0.1); border-radius:16px; width:640px; max-width:95vw; max-height:82vh; overflow:hidden; display:flex; flex-direction:column; animation:modalIn 0.2s ease;">
+        <div style="padding:22px 24px 16px; border-bottom:1px solid rgba(245,240,232,0.08); display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+          <div>
+            <div style="font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); margin-bottom:4px;">Sprint — Slot <span id="pickerSlotLabel"></span></div>
+            <div style="font-size:16px; font-weight:600; color:var(--cream);">Choisir un use case</div>
+          </div>
+          <button onclick="closePicker()" style="width:32px;height:32px;border-radius:6px;border:1px solid rgba(245,240,232,0.1);background:transparent;cursor:pointer;font-size:18px;color:rgba(245,240,232,0.4); display:flex;align-items:center;justify-content:center; transition:all 0.15s;" onmouseover="this.style.background=&#39;rgba(245,240,232,0.06)&#39;" onmouseout="this.style.background=&#39;transparent&#39;">×</button>
+        </div>
+        <!-- Search -->
+        <div style="padding:12px 24px 0; flex-shrink:0;">
+          <input id="pickerSearch" type="text" placeholder="Filtrer par nom ou département…" oninput="filterPicker(this.value)" style="width:100%;padding:9px 14px;background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);border-radius:8px;color:var(--cream);font-family:&#39;DM Sans&#39;,sans-serif;font-size:13px;outline:none;" onfocus="this.style.borderColor=&#39;rgba(200,169,110,0.4)&#39;" onblur="this.style.borderColor=&#39;rgba(245,240,232,0.1)&#39;">
+        </div>
+        <!-- List -->
+        <div style="overflow-y:auto; padding:12px 24px 20px; flex:1;" id="pickerList"></div>
+      </div>
+    </div>
+</body></html>
